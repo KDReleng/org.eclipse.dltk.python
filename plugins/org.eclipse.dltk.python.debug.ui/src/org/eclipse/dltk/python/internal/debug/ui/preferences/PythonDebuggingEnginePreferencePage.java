@@ -1,24 +1,31 @@
 package org.eclipse.dltk.python.internal.debug.ui.preferences;
 
 import org.eclipse.core.resources.IProject;
+
+import org.eclipse.dltk.debug.ui.preferences.AbstractDebuggingEngineOptionsBlock;
+import org.eclipse.dltk.python.core.PythonNature;
+import org.eclipse.dltk.python.internal.debug.PythonDebugConstants;
 import org.eclipse.dltk.python.internal.debug.PythonDebugPlugin;
 import org.eclipse.dltk.ui.PreferencesAdapter;
 import org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPropertyAndPreferencePage;
 import org.eclipse.dltk.ui.preferences.AbstractOptionsBlock;
 import org.eclipse.dltk.ui.preferences.PreferenceKey;
 import org.eclipse.dltk.ui.util.IStatusChangeListener;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+
 import org.eclipse.ui.preferences.IWorkbenchPreferenceContainer;
 
 /**
- * Python debug preference page
+ * Python debugging engine preference page
  */
-public class PythonDebugPreferencePage extends
+public class PythonDebuggingEnginePreferencePage extends
 		AbstractConfigurationBlockPropertyAndPreferencePage {
-	
-	private static final String PREFERENCE_PAGE_ID = "org.eclipse.dltk.python.preferences.debug";
-	private static final String PROPERTY_PAGE_ID = "org.eclipse.dltk.python.propertyPage.debug";
+
+	static PreferenceKey DEBUGGING_ENGINE = new PreferenceKey(
+			PythonDebugPlugin.PLUGIN_ID,
+			PythonDebugConstants.DEBUGGING_ENGINE_ID_KEY);
+
+	private static String PREFERENCE_PAGE_ID = "org.eclipse.dltk.python.preferences.debug.engines";
+	private static String PROPERTY_PAGE_ID = "org.eclipse.dltk.python.debug.propertyPage.debug.engines";
 
 	/*
 	 * @see org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPropertyAndPreferencePage#createOptionsBlock(org.eclipse.dltk.ui.util.IStatusChangeListener,
@@ -28,12 +35,17 @@ public class PythonDebugPreferencePage extends
 	protected AbstractOptionsBlock createOptionsBlock(
 			IStatusChangeListener newStatusChangedListener, IProject project,
 			IWorkbenchPreferenceContainer container) {
-		return new AbstractOptionsBlock(newStatusChangedListener, project,
-				new PreferenceKey[0], container) {
+		return new AbstractDebuggingEngineOptionsBlock(
+				newStatusChangedListener, project, getKeys(), container) {
 
-			protected Control createOptionsBlock(Composite parent) {
-				return parent;
+			protected String getNatureId() {
+				return PythonNature.NATURE_ID;
 			}
+
+			protected PreferenceKey getSavedContributionKey() {
+				return DEBUGGING_ENGINE;
+			}
+
 		};
 	}
 
@@ -71,7 +83,7 @@ public class PythonDebugPreferencePage extends
 	 * @see org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPropertyAndPreferencePage#setDescription()
 	 */
 	protected void setDescription() {
-		setDescription(PythonDebugPreferencesMessages.PythonDebugPreferencePage_description);
+		setDescription(PythonDebugPreferencesMessages.PythonDebugEnginePreferencePage_description);
 	}
 
 	/*
@@ -80,5 +92,9 @@ public class PythonDebugPreferencePage extends
 	protected void setPreferenceStore() {
 		setPreferenceStore(new PreferencesAdapter(PythonDebugPlugin
 				.getDefault().getPluginPreferences()));
+	}
+
+	private PreferenceKey[] getKeys() {
+		return new PreferenceKey[] { DEBUGGING_ENGINE };
 	}
 }
