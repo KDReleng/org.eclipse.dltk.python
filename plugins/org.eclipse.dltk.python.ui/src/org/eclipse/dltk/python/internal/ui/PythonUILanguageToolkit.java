@@ -9,8 +9,6 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.ui;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.dltk.core.DLTKLanguageManager;
 import org.eclipse.dltk.core.IDLTKLanguageToolkit;
 import org.eclipse.dltk.core.IScriptFolder;
 import org.eclipse.dltk.core.ISourceModule;
@@ -28,16 +26,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 
 public class PythonUILanguageToolkit implements IDLTKUILanguageToolkit {
 	private static ScriptElementLabels sInstance = new ScriptElementLabels() {
-		protected void getScriptFolderLabel(IScriptFolder folder, StringBuffer buf) {
+		protected void getScriptFolderLabel(IScriptFolder folder,
+				StringBuffer buf) {
 			String name = folder.getElementName();
-			try {
-				String delimeter = DLTKLanguageManager.getLanguageToolkit(
-						folder).getDelimeterReplacerString();
-				name = name.replaceAll(String
-						.valueOf(IScriptFolder.PACKAGE_DELIMITER), delimeter);
-			} catch (CoreException e) {
-				// this can't happen
-			}
+			name = name.replace(IScriptFolder.PACKAGE_DELIMITER, '.');
 			buf.append(name);
 		}
 	};
