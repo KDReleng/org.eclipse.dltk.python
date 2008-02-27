@@ -54,10 +54,6 @@ public class PythonLanguageToolkit extends AbstractLanguageToolkit {
 		return sInstance;
 	}
 
-	public String getDelimeterReplacerString() {
-		return ".";
-	}
-
 	public String[] getLanguageFileExtensions() {
 		return langaugeExtensions;
 	}
