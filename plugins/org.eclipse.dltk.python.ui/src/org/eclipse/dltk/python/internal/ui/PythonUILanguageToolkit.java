@@ -82,6 +82,12 @@ public class PythonUILanguageToolkit implements IDLTKUILanguageToolkit {
 
 	private static final String INTERPRETERS_PREFERENCE_PAGE_ID = "org.eclipse.dltk.python.preferences.interpreters";
 	private static final String DEBUG_PREFERENCE_PAGE_ID = "org.eclipse.dltk.python.preferences.debug";
+	private static final String[] EDITOR_PREFERENCE_PAGES_IDS = {
+		"org.eclipse.dltk.python.preferences.editor", 
+		"org.eclipse.dltk.python.ui.editor.SyntaxColoring", 
+		"org.eclipse.dltk.python.ui.editor.SmartTyping", 
+		"org.eclipse.dltk.python.ui.editor.PythonFolding"
+	};
 
 	public String getInterpreterPreferencePage() {
 		return INTERPRETERS_PREFERENCE_PAGE_ID;
@@ -89,5 +95,9 @@ public class PythonUILanguageToolkit implements IDLTKUILanguageToolkit {
 
 	public String getDebugPreferencePage() {
 		return DEBUG_PREFERENCE_PAGE_ID;
+	}
+
+	public String[] getEditorPreferencePages() {
+		return EDITOR_PREFERENCE_PAGES_IDS;
 	}
 }
