@@ -85,4 +85,24 @@ public class PythonActiveStateDebuggerRunner extends
 		return PythonDebugPlugin.PLUGIN_ID;
 	}
 
+	/*
+	 * @see org.eclipse.dltk.launching.DebuggingEngineRunner#getLoggingEnabledPreferenceKey()
+	 */
+	protected String getLoggingEnabledPreferenceKey() {
+		return PythonActiveStateDebuggerConstants.ENABLE_LOGGING;
+	}
+
+	/*
+	 * @see org.eclipse.dltk.launching.DebuggingEngineRunner#getLogFileNamePreferenceKey()
+	 */
+	protected String getLogFileNamePreferenceKey() {
+		return PythonActiveStateDebuggerConstants.LOG_FILE_NAME;
+	}
+
+	/*
+	 * @see org.eclipse.dltk.launching.DebuggingEngineRunner#getLogFilePathPreferenceKey()
+	 */
+	protected String getLogFilePathPreferenceKey() {
+		return PythonActiveStateDebuggerConstants.LOG_FILE_PATH;
+	}
 }
