@@ -13,6 +13,22 @@
       <extension point="org.eclipse.core.runtime.preferences">
         <initializer class="org.eclipse.dltk.python.internal.ui.PythonUIPreferenceInitializer"/>
     </extension>
+    
+ <extension
+         point="org.eclipse.search.searchPages">
+      <page
+            canSearchEnclosingProjects="true"
+            class="org.eclipse.dltk.python.internal.ui.search.PythonSearchPage"
+            enabled="true"
+            extensions="py:90"
+            icon="$nl$/icons/obj16/search_obj.gif"
+            id="org.eclipse.dltk.ui.PythonSearchPage"
+            label="%PythonSearchPage.label"
+            showScopeSection="true"
+            sizeHint="460,160">
+      </page>
+   </extension>    
+    
  <extension
          point="org.eclipse.ui.editors">
       <editor
