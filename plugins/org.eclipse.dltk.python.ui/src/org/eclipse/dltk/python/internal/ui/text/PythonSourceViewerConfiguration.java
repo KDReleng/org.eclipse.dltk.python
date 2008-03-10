@@ -24,7 +24,6 @@ import org.eclipse.dltk.ui.text.completion.ContentAssistPreference;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.IInformationControlCreator;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.information.IInformationPresenter;
 import org.eclipse.jface.text.information.IInformationProvider;
@@ -60,8 +59,7 @@ public class PythonSourceViewerConfiguration extends
 
 	public String[] getIndentPrefixes(ISourceViewer sourceViewer,
 			String contentType) {
-		// XXX: what happens here?.. why " " ?
-		return new String[] { "\t", "    " };
+		return new String[] { "\t", "        " };
 	}
 
 	/*
@@ -168,18 +166,6 @@ public class PythonSourceViewerConfiguration extends
 				|| fStringScanner.affectsBehavior(event);
 	}
 
-	public IInformationPresenter getHierarchyPresenter(
-			ScriptSourceViewer viewer, boolean b) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public IInformationPresenter getOutlinePresenter(ScriptSourceViewer viewer,
-			boolean b) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -192,12 +178,6 @@ public class PythonSourceViewerConfiguration extends
 		String partitioning = getConfiguredDocumentPartitioning(sourceViewer);
 		return new IAutoEditStrategy[] { new PythonAutoEditStrategy(
 				fPreferenceStore, partitioning) };
-	}
-
-	protected IInformationControlCreator getOutlinePresenterControlCreator(
-			ISourceViewer sourceViewer, String commandId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	protected void initializeQuickOutlineContexts(
@@ -217,5 +197,9 @@ public class PythonSourceViewerConfiguration extends
 				getEditor(), assistant, IDocument.DEFAULT_CONTENT_TYPE);
 		assistant.setContentAssistProcessor(processor,
 				IDocument.DEFAULT_CONTENT_TYPE);
+	}
+	public IInformationPresenter getOutlinePresenter(ScriptSourceViewer viewer,
+			boolean doCodeResolve) {
+		return null;
 	}
 }
