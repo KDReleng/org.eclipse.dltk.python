@@ -10,7 +10,7 @@ import org.eclipse.dltk.ui.text.completion.ScriptContentAssistInvocationContext;
 public class PythonTemplateCompletionProcessor extends
 		ScriptTemplateCompletionProcessor {
 
-	private static String[] IGNORE = new String[] {"."};
+	private static char[] IGNORE = new char[] {'.'};
 	
 	public PythonTemplateCompletionProcessor(
 			ScriptContentAssistInvocationContext context) {
@@ -27,7 +27,7 @@ public class PythonTemplateCompletionProcessor extends
 	/*
 	 * @see org.eclipse.dltk.ui.templates.ScriptTemplateCompletionProcessor#getIgnore()
 	 */
-	protected String[] getIgnore() {
+	protected char[] getIgnore() {
 		return IGNORE;
 	}
 	
