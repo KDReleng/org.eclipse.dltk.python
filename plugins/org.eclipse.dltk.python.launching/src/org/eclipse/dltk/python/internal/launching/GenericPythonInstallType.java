@@ -9,14 +9,20 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.launching;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.ILog;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.dltk.core.environment.IDeployment;
+import org.eclipse.dltk.core.environment.IEnvironment;
+import org.eclipse.dltk.core.environment.IExecutionEnvironment;
+import org.eclipse.dltk.core.environment.IFileHandle;
 import org.eclipse.dltk.internal.launching.AbstractInterpreterInstallType;
 import org.eclipse.dltk.launching.IInterpreterInstall;
 import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.python.launching.PythonLaunchingPlugin;
+import org.osgi.framework.Bundle;
 
 public class GenericPythonInstallType extends AbstractInterpreterInstallType {
 	private static final String INSTALL_TYPE_NAME = "Generic Python";
@@ -43,9 +49,10 @@ public class GenericPythonInstallType extends AbstractInterpreterInstallType {
 		return new GenericPythonInstall(this, id);
 	}
 
-	protected File createPathFile() throws IOException {
-		return storeToMetadata(PythonLaunchingPlugin.getDefault(), "path.py",
-				"scripts/path.py");
+	protected IPath createPathFile(IDeployment deployment)
+			throws IOException {
+		Bundle bundle = PythonLaunchingPlugin.getDefault().getBundle();
+		return deployment.add(bundle, "scripts/path.py");
 	}
 
 	protected ILog getLog() {
