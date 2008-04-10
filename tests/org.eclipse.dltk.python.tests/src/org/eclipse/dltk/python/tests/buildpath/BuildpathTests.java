@@ -25,6 +25,8 @@ import org.eclipse.dltk.core.IBuildpathEntry;
 import org.eclipse.dltk.core.IScriptProject;
 import org.eclipse.dltk.core.IModelMarker;
 import org.eclipse.dltk.core.IModelStatus;
+import org.eclipse.dltk.core.environment.EnvironmentManager;
+import org.eclipse.dltk.core.environment.EnvironmentPathUtils;
 import org.eclipse.dltk.core.tests.model.ModifyingResourceTests;
 import org.eclipse.dltk.core.tests.util.Util;
 import org.eclipse.dltk.internal.core.BuildpathEntry;
@@ -32,11 +34,9 @@ import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.python.tests.PythonTestsPlugin;
 import org.eclipse.dltk.utils.CorePrinter;
 
-
 public class BuildpathTests extends ModifyingResourceTests {
 
 	private static final String[] TEST_NATURE = new String[] { PythonNature.NATURE_ID };
-
 
 	public BuildpathTests(String name) {
 		super(PythonTestsPlugin.PLUGIN_NAME, name);
@@ -47,11 +47,11 @@ public class BuildpathTests extends ModifyingResourceTests {
 	}
 
 	public void setUpSuite() throws Exception {
-		super.setUpSuite();					
+		super.setUpSuite();
 	}
 
-	private void assertEncodeDecodeEntry(String projectName, String expectedEncoded,
-			IBuildpathEntry entry) {
+	private void assertEncodeDecodeEntry(String projectName,
+			String expectedEncoded, IBuildpathEntry entry) {
 		IScriptProject project = getScriptProject(projectName);
 		String encoded = project.encodeBuildpathEntry(entry);
 		assertSourceEquals("Unexpected encoded entry", expectedEncoded, encoded);
@@ -62,8 +62,8 @@ public class BuildpathTests extends ModifyingResourceTests {
 	protected void assertStatus(String expected, IStatus status) {
 		String actual = status.getMessage();
 		if (!expected.equals(actual)) {
-			//System.out.print(Util.displayString(actual, 2));
-			//System.out.println(",");
+			// System.out.print(Util.displayString(actual, 2));
+			// System.out.println(",");
 		}
 		assertEquals(expected, actual);
 	}
@@ -71,13 +71,14 @@ public class BuildpathTests extends ModifyingResourceTests {
 	protected void assertStatus(String message, String expected, IStatus status) {
 		String actual = status.getMessage();
 		if (!expected.equals(actual)) {
-			//System.out.print(Util.displayString(actual, 2));
-			//System.out.println(",");
+			// System.out.print(Util.displayString(actual, 2));
+			// System.out.println(",");
 		}
 		assertEquals(message, expected, actual);
 	}
 
-	protected File createFile(File parent, String name, String content) throws IOException {
+	protected File createFile(File parent, String name, String content)
+			throws IOException {
 		File file = new File(parent, name);
 		FileOutputStream out = new FileOutputStream(file);
 		out.write(content.getBytes());
@@ -95,13 +96,18 @@ public class BuildpathTests extends ModifyingResourceTests {
 		file.mkdirs();
 		return file;
 	}
-	protected int numberOfCycleMarkers(IScriptProject scriptProject) throws CoreException {
-		IMarker[] markers = scriptProject.getProject().findMarkers(IModelMarker.BUILDPATH_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
+
+	protected int numberOfCycleMarkers(IScriptProject scriptProject)
+			throws CoreException {
+		IMarker[] markers = scriptProject.getProject().findMarkers(
+				IModelMarker.BUILDPATH_PROBLEM_MARKER, false,
+				IResource.DEPTH_ZERO);
 		int result = 0;
 		for (int i = 0, length = markers.length; i < length; i++) {
 			IMarker marker = markers[i];
-			String cycleAttr = (String)marker.getAttribute(IModelMarker.CYCLE_DETECTED);
-			if (cycleAttr != null && cycleAttr.equals("true")){ //$NON-NLS-1$
+			String cycleAttr = (String) marker
+					.getAttribute(IModelMarker.CYCLE_DETECTED);
+			if (cycleAttr != null && cycleAttr.equals("true")) { //$NON-NLS-1$
 				result++;
 			}
 		}
@@ -109,61 +115,67 @@ public class BuildpathTests extends ModifyingResourceTests {
 	}
 
 	public void tearDownSuite() throws Exception {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		super.tearDownSuite();
-	}	
-	
-//	/**
-//	 * Library BuildpathEntry test  
-//	 * @throws Exception 
-//	 */
-//	public void test004() throws Exception {
-//		setUpScriptProject(BUILDPATH_PRJ_2);
-//		IScriptProject project = (IScriptProject) getScriptProject(BUILDPATH_PRJ_2);
-//		assertNotNull(project);
-//		IBuildpathEntry entrys[] = project.getRawBuildpath();
-//		assertEquals(1, entrys.length);
-//		assertEquals(IBuildpathEntry.BPE_LIBRARY, entrys[0].getEntryKind());
-//		IProjectFragment[] fragments = project.getProjectFragments();
-//		assertEquals(1, fragments.length);
-//		assertTrue(fragments[0] instanceof ArchiveProjectFragment);
-//		IProjectFragment fragment = fragments[0];
-//		IModelElement[] elements = fragment.getChildren();
-//		
-//		System.out.println("Model:");
-//		CorePrinter printer = new CorePrinter(System.out);
-//		((ScriptProject)project).printNode(printer);
-//		printer.flush();
-//		
-//		deleteProject(BUILDPATH_PRJ_2);		
-//	}
-	
+	}
+
+	// /**
+	// * Library BuildpathEntry test
+	// * @throws Exception
+	// */
+	// public void test004() throws Exception {
+	// setUpScriptProject(BUILDPATH_PRJ_2);
+	// IScriptProject project = (IScriptProject)
+	// getScriptProject(BUILDPATH_PRJ_2);
+	// assertNotNull(project);
+	// IBuildpathEntry entrys[] = project.getRawBuildpath();
+	// assertEquals(1, entrys.length);
+	// assertEquals(IBuildpathEntry.BPE_LIBRARY, entrys[0].getEntryKind());
+	// IProjectFragment[] fragments = project.getProjectFragments();
+	// assertEquals(1, fragments.length);
+	// assertTrue(fragments[0] instanceof ArchiveProjectFragment);
+	// IProjectFragment fragment = fragments[0];
+	// IModelElement[] elements = fragment.getChildren();
+	//		
+	// System.out.println("Model:");
+	// CorePrinter printer = new CorePrinter(System.out);
+	// ((ScriptProject)project).printNode(printer);
+	// printer.flush();
+	//		
+	// deleteProject(BUILDPATH_PRJ_2);
+	// }
+
 	/**
-	 * External folder Library BuildpathEntry test   
-	 * @throws Exception 
+	 * External folder Library BuildpathEntry test
+	 * 
+	 * @throws Exception
 	 */
 	public void test005() throws Exception {
-		try {			
-			String filePath = "/usr/lib/python2.4/";			
-			IScriptProject proj = this.createScriptProject("P", TEST_NATURE, new String[] { "src" });
+		try {
+			String filePath = "/usr/lib/python2.4/";
+			IScriptProject proj = this.createScriptProject("P", TEST_NATURE,
+					new String[] { "src" });
 			IBuildpathEntry[] originalCP = proj.getRawBuildpath();
 
 			IBuildpathEntry[] newCP = new IBuildpathEntry[originalCP.length + 1];
 			System.arraycopy(originalCP, 0, newCP, 0, originalCP.length);
-			newCP[originalCP.length] = DLTKCore.newExtLibraryEntry(new Path( filePath ));
+			newCP[originalCP.length] = DLTKCore
+					.newExtLibraryEntry(EnvironmentPathUtils.getFullPath(
+							EnvironmentManager.getEnvironment(proj), new Path(
+									filePath)));
 
 			IModelStatus status = BuildpathEntry.validateBuildpath(proj, newCP);
 
 			assertStatus("OK", status);
-			
+
 			proj.setRawBuildpath(newCP, null);
-			
-		//	System.out.println("Model:");
+
+			// System.out.println("Model:");
 			CorePrinter printer = new CorePrinter(System.out, true);
-			//((ScriptProject)proj).printNode(printer);
+			// ((ScriptProject)proj).printNode(printer);
 			printer.flush();
 		} finally {
-			this.deleteProject("P");			
+			this.deleteProject("P");
 		}
 	}
 }
