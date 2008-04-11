@@ -1,8 +1,7 @@
 package org.eclipse.dltk.python.activestatedebugger;
 
-import java.io.File;
-
 import org.eclipse.dltk.core.PreferencesLookupDelegate;
+import org.eclipse.dltk.core.environment.IFileHandle;
 import org.eclipse.dltk.launching.ExternalDebuggingEngineRunner;
 import org.eclipse.dltk.launching.IInterpreterInstall;
 import org.eclipse.dltk.launching.InterpreterConfig;
@@ -40,7 +39,7 @@ public class PythonActiveStateDebuggerRunner extends
 	protected InterpreterConfig alterConfig(InterpreterConfig config,
 			PreferencesLookupDelegate delegate) {
 
-		File debugEnginePath = getDebuggingEnginePath(delegate);
+		IFileHandle debugEnginePath = getDebuggingEnginePath(delegate);
 		DbgpInterpreterConfig dbgpConfig = new DbgpInterpreterConfig(config);
 		final String host = dbgpConfig.getHost();
 		final int port = dbgpConfig.getPort();
@@ -48,7 +47,7 @@ public class PythonActiveStateDebuggerRunner extends
 
 		// python -S path/to/pydbgp.py -d host:port -k ide_key your-script.py
 		config.addInterpreterArg("-S");
-		config.addInterpreterArg(debugEnginePath.getAbsolutePath());
+		config.addInterpreterArg(debugEnginePath.toString());
 		config.addInterpreterArg("-d");
 		config.addInterpreterArg(host + ":" + port);
 		config.addInterpreterArg("-k");
