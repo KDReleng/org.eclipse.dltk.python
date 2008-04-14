@@ -21,7 +21,7 @@ import org.eclipse.dltk.python.internal.debug.ui.interpreters.PythonInterpreterT
 public class PythonTabGroup extends AbstractLaunchConfigurationTabGroup {
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
 		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
-				new PythonMainLaunchConfigurationTab(),
+				new PythonMainLaunchConfigurationTab(mode),
 				new ScriptArgumentsTab(),
 				new PythonInterpreterTab(),
 				new EnvironmentTab(),

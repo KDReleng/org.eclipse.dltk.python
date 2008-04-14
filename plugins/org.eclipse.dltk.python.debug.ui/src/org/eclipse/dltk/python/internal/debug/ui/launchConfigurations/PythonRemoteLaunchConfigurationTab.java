@@ -14,6 +14,10 @@ import org.eclipse.dltk.python.internal.debug.PythonDebugPlugin;
 public class PythonRemoteLaunchConfigurationTab extends
 		RemoteLaunchConfigurationTab {
 
+	public PythonRemoteLaunchConfigurationTab(String mode) {
+		super(mode);
+	}
+
 	/*
 	 * @see org.eclipse.dltk.debug.ui.launchConfigurations.ScriptLaunchConfigurationTab#breakOnFirstLinePrefEnabled(org.eclipse.dltk.core.PreferencesLookupDelegate)
 	 */

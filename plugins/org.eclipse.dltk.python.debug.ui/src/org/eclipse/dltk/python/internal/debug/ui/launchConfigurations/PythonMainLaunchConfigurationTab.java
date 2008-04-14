@@ -22,6 +22,10 @@ import org.eclipse.dltk.python.internal.debug.PythonDebugPlugin;
 public class PythonMainLaunchConfigurationTab extends
 		MainLaunchConfigurationTab {
 
+	public PythonMainLaunchConfigurationTab(String mode) {
+		super(mode);
+	}
+
 	/*
 	 * @see org.eclipse.dltk.debug.ui.launchConfigurations.ScriptLaunchConfigurationTab#breakOnFirstLinePrefEnabled(org.eclipse.dltk.core.PreferencesLookupDelegate)
 	 */

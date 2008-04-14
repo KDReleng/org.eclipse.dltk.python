@@ -5,25 +5,18 @@ import org.eclipse.debug.ui.CommonTab;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
-public class PythonRemoteTabGroup extends AbstractLaunchConfigurationTabGroup
-{
-    //~ Methods
+public class PythonRemoteTabGroup extends AbstractLaunchConfigurationTabGroup {
+	// ~ Methods
 
-    /*
-     * @see
-     * org.eclipse.debug.ui.ILaunchConfigurationTabGroup#createTabs(org.eclipse.debug.ui.ILaunchConfigurationDialog,
-     * java.lang.String)
-     */
-    public void createTabs(ILaunchConfigurationDialog dialog, String mode)
-    {
-        ILaunchConfigurationTab[] tabs =
-            new ILaunchConfigurationTab[]
-            {
-                new PythonRemoteLaunchConfigurationTab(),
-                new CommonTab()
-            };
+	/*
+	 * @see org.eclipse.debug.ui.ILaunchConfigurationTabGroup#createTabs(org.eclipse.debug.ui.ILaunchConfigurationDialog,
+	 *      java.lang.String)
+	 */
+	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
+		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
+				new PythonRemoteLaunchConfigurationTab(mode), new CommonTab() };
 
-        setTabs(tabs);
-    }
+		setTabs(tabs);
+	}
 
 }
