@@ -9,14 +9,21 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.debug.ui.interpreters;
 
+import org.eclipse.dltk.debug.ui.launchConfigurations.IMainLaunchConfigurationTabListenerManager;
 import org.eclipse.dltk.debug.ui.launchConfigurations.InterpreterTab;
 import org.eclipse.dltk.internal.debug.ui.interpreters.AbstractInterpreterComboBlock;
 import org.eclipse.dltk.python.core.PythonNature;
 
 public class PythonInterpreterTab extends InterpreterTab {
-	
+
+	public PythonInterpreterTab(
+			IMainLaunchConfigurationTabListenerManager listenerManager) {
+		super(listenerManager);
+		// TODO Auto-generated constructor stub
+	}
+
 	protected AbstractInterpreterComboBlock getInterpreterBlock() {
-		return new PythonInterpreterComboBlock();
+		return new PythonInterpreterComboBlock(getMainTab());
 	}
 
 	protected String getNature() {

@@ -17,8 +17,6 @@ import org.eclipse.dltk.internal.debug.ui.interpreters.AbstractInterpreterContai
 public class PythonInterpreterContainerWizardPage extends AbstractInterpreterContainerWizardPage {
 
 	protected AbstractInterpreterComboBlock getInterpreterBlock() {
-		return new PythonInterpreterComboBlock();
+		return new PythonInterpreterComboBlock(null);
 	}
-
-	
 }

@@ -9,18 +9,22 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.debug.ui.interpreters;
 
-
+import org.eclipse.dltk.debug.ui.launchConfigurations.IMainLaunchConfigurationTabListenerManager;
 import org.eclipse.dltk.internal.debug.ui.interpreters.AbstractInterpreterComboBlock;
 import org.eclipse.dltk.python.core.PythonNature;
 
-
 public class PythonInterpreterComboBlock extends AbstractInterpreterComboBlock {
-	protected void showInterpreterPreferencePage()  { 
+	protected PythonInterpreterComboBlock(
+			IMainLaunchConfigurationTabListenerManager tab) {
+		super(tab);
+	}
+
+	protected void showInterpreterPreferencePage() {
 		showPrefPage(PythonInterpreterPreferencePage.PAGE_ID);
 	}
 
-	protected String getCurrentLanguageNature () {
+	protected String getCurrentLanguageNature() {
 		return PythonNature.NATURE_ID;
 	}
-	
+
 }
