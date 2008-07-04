@@ -188,7 +188,7 @@ public class PythonSourceViewerConfiguration extends
 				IPythonPartitions.PYTHON_STRING);
 	}
 
-	public ContentAssistPreference getContentAssistPreference() {
+	protected ContentAssistPreference getContentAssistPreference() {
 		return PythonContentAssistPreference.getDefault();
 	}
 
