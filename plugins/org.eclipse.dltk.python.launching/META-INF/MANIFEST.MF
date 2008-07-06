@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.jface.text,
  org.eclipse.dltk.python.core,
- org.eclipse.dltk.python.debug
+ org.eclipse.dltk.python.debug,
+ org.eclipse.dltk.debug
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.dltk.python.launching
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
