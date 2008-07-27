@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+
+  <extension point="org.eclipse.core.runtime.preferences">
+    <initializer class="org.eclipse.dltk.python.internal.debug.ui.PythonDebugUIPreferenceInitializer" />
+  </extension>
+
 	<extension point="org.eclipse.debug.ui.debugModelContextBindings">
 		<modelContextBinding
 			contextId="org.eclipse.dltk.debug.ui.debugging"
@@ -158,8 +163,13 @@
             category="org.eclipse.dltk.python.preferences.debug"
             class="org.eclipse.dltk.python.internal.debug.ui.preferences.PythonDebuggingEnginePreferencePage"
             id="org.eclipse.dltk.python.preferences.debug.engines"
-            name="%Engines.PreferencePage">
+            name="%Engines.PreferencePage">            
       </page>      
+      <page
+        category="org.eclipse.dltk.python.preferences.debug"
+        class="org.eclipse.dltk.debug.ui.preferences.ScriptDetailFormattersPreferencePage:org.eclipse.dltk.python.core.nature"
+        id="org.eclipse.dltk.python.preferences.debug.detailFormatters"
+        name="%DetailFormattersPreferencePage.name" />       
    </extension>
    <extension
          point="org.eclipse.ui.actionSetPartAssociations">
@@ -265,6 +275,12 @@
     <handler 
       commandId="org.eclipse.dltk.python.debug.ui.commands.toggleLocalVariables"
       class="org.eclipse.dltk.python.internal.debug.ui.handlers.ToggleLocalVariablesHandler" />      
+  </extension>
+
+  <extension point="org.eclipse.dltk.debug.ui.language">
+    <language
+      class="org.eclipse.dltk.python.internal.debug.ui.PythonDebugUILanguageToolkit"
+      nature="org.eclipse.dltk.python.core.nature"/>
   </extension>
    
 </plugin>
