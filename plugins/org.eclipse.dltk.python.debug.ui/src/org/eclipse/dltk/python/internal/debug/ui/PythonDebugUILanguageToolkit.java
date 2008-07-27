@@ -21,4 +21,10 @@ public class PythonDebugUILanguageToolkit extends
 		return PythonDebugUIPlugin.getDefault().getPreferenceStore();
 	}
 
+	/*
+	 * @see org.eclipse.dltk.debug.ui.AbstractDebugUILanguageToolkit#getVariablesViewPreferencePages()
+	 */
+	public String[] getVariablesViewPreferencePages() {
+		return new String[] {"org.eclipse.dltk.python.preferences.debug.detailFormatters"};
+	}
 }
