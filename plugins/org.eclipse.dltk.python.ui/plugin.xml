@@ -165,6 +165,12 @@
                id="org.eclipse.dltk.python.ui.editor.PythonEditor">
          </part>
 	 </actionSetPartAssociation>
+      <actionSetPartAssociation
+            targetID="org.eclipse.dltk.ui.ScriptCodingActionSet">
+         <part
+               id="org.eclipse.dltk.python.ui.editor.PythonEditor">
+         </part>
+      </actionSetPartAssociation>
  </extension>
    <extension
        point="org.eclipse.dltk.ui.language">

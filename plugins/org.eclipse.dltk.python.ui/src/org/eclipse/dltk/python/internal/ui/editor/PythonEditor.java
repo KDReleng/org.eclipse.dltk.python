@@ -17,12 +17,15 @@ import org.eclipse.dltk.python.core.PythonLanguageToolkit;
 import org.eclipse.dltk.python.internal.ui.PythonUI;
 import org.eclipse.dltk.python.internal.ui.text.folding.PythonFoldingStructureProvider;
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
+import org.eclipse.dltk.ui.actions.GenerateActionGroup;
 import org.eclipse.dltk.ui.text.ScriptTextTools;
 import org.eclipse.dltk.ui.text.folding.IFoldingStructureProvider;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.actions.ActionGroup;
+import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 
 
 public class PythonEditor extends ScriptEditor {
@@ -72,7 +75,14 @@ public class PythonEditor extends ScriptEditor {
 		}
 		return fFoldingProvider;
 	}
-
+	
+	protected void createActions() {
+		super.createActions();
+		ActionGroup generateActions = new GenerateActionGroup(this, ITextEditorActionConstants.GROUP_EDIT);
+		fActionGroups.addGroup(generateActions);
+		fContextMenuGroup.addGroup(generateActions);
+	}
+	
 	protected FoldingActionGroup createFoldingActionGroup() {
 		return new FoldingActionGroup(this, getViewer(), PythonUI.getDefault()
 				.getPreferenceStore());
