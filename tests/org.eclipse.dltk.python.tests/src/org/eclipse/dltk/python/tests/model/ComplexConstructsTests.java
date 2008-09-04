@@ -7,6 +7,7 @@ import java.util.List;
 import junit.framework.Test;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -25,6 +26,7 @@ import org.eclipse.dltk.python.tests.PythonTestsPlugin;
 public class ComplexConstructsTests extends AbstractModelTests 
 {
 	private static final String PROJECT_NAME = "pytests";
+	private static final String FOLDER = "src";
 	private static final String ASSIGNMENT_TESTS_FILE_NAME = "assignment_tests.py";
 
 	private static final String SCRIPT_SOURCE = "a,b=1,2;c=d=1;x=y=lambda z:z;";
@@ -44,7 +46,9 @@ public class ComplexConstructsTests extends AbstractModelTests
 		super.setUpSuite();
 		IScriptProject sp = this.setUpScriptProject(PROJECT_NAME);
 		IProject prj = sp.getProject();
-		IFile testFile = prj.getFile(ASSIGNMENT_TESTS_FILE_NAME);
+		IFolder src = prj.getFolder(FOLDER);
+		src.create(true, true, null);
+		IFile testFile = src.getFile(ASSIGNMENT_TESTS_FILE_NAME);
 		InputStream source = new ByteArrayInputStream(SCRIPT_SOURCE.getBytes());
 		testFile.create(source, true, new NullProgressMonitor());
 	}
@@ -57,7 +61,7 @@ public class ComplexConstructsTests extends AbstractModelTests
 	public void testAssignment() throws Exception
 	{
 		IScriptProject project = getScriptProject( PROJECT_NAME );
-		ISourceModule module = this.getSourceModule( PROJECT_NAME, project.getPath().toString(), ASSIGNMENT_TESTS_FILE_NAME);
+		ISourceModule module = this.getSourceModule( PROJECT_NAME, FOLDER, ASSIGNMENT_TESTS_FILE_NAME);
 		IModelElement[] children = module.getChildren();
 		ModelTestUtils.getAssertField(children, "a");
 		ModelTestUtils.getAssertField(children, "b");
