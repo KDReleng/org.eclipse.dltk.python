@@ -24,7 +24,7 @@ import org.eclipse.dltk.python.tests.PythonTestsPlugin;
 
 public class ComplexConstructsTests extends AbstractModelTests 
 {
-	private static final String PROJECT_NAME = "pytests_proj";
+	private static final String PROJECT_NAME = "pytests";
 	private static final String ASSIGNMENT_TESTS_FILE_NAME = "assignment_tests.py";
 
 	private static final String SCRIPT_SOURCE = "a,b=1,2;c=d=1;x=y=lambda z:z;";
