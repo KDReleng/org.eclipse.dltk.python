@@ -29,8 +29,7 @@ public abstract class PythonAssistParser implements IAssistParser {
 	protected ASTNode assistNodeParent = null;
 
 	protected PythonAssistParser() {
-		parser = DLTKLanguageManager
-				.getSourceParser(PythonNature.NATURE_ID);
+		parser = DLTKLanguageManager.getSourceParser(PythonNature.NATURE_ID);
 	}
 
 	public ASTNode getAssistNodeParent() {
@@ -77,7 +76,7 @@ public abstract class PythonAssistParser implements IAssistParser {
 
 	public ModuleDeclaration parse(ISourceModule sourceUnit) {
 		ModuleDeclaration module = this.parser.parse(sourceUnit.getFileName(),
-				sourceUnit.getSourceContents().toCharArray(), null);
+				sourceUnit.getContentsAsCharArray(), null);
 		module.rebuild();
 
 		PythonASTUtil.extendStatements(module, sourceUnit.getSourceContents());
