@@ -16,6 +16,8 @@ import org.eclipse.dltk.python.internal.ui.PythonUI;
 import org.eclipse.dltk.python.internal.ui.text.PythonPartitionScanner;
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
 import org.eclipse.dltk.ui.text.folding.AbstractASTFoldingStructureProvider;
+import org.eclipse.dltk.ui.text.folding.DefaultElementCommentResolver;
+import org.eclipse.dltk.ui.text.folding.IElementCommentResolver;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.rules.IPartitionTokenScanner;
 
@@ -29,6 +31,8 @@ public class PythonFoldingStructureProvider extends
 
 	/* preferences */
 	private boolean fInitCollapseComments = true;
+
+	private IElementCommentResolver fElementCommentResolver = new DefaultElementCommentResolver();
 
 	public String getCommentPartition() {
 		return IPythonPartitions.PYTHON_COMMENT;
@@ -97,4 +101,7 @@ public class PythonFoldingStructureProvider extends
 		return true;
 	}
 
+	public IElementCommentResolver getElementCommentResolver() {
+		return fElementCommentResolver;
+	}
 }
