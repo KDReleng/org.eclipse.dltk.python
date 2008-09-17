@@ -287,4 +287,10 @@ public class DeleteResourcesTests extends ModifyingResourceTests {
 		assertDeletion(new IModelElement[] { element });
 
 	}
+
+	public void startDeltas() {
+		waitUntilIndexesReady();
+		super.startDeltas();
+	}
+
 }

@@ -1045,4 +1045,9 @@ public void testMoveWorkingCopy2() throws CoreException {
 		if (copy != null) copy.discardWorkingCopy();
 	}
 }
+
+	public void startDeltas() {
+		waitUntilIndexesReady();
+		super.startDeltas();
+	}
 }
