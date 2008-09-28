@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+
+  <extension point="org.eclipse.core.runtime.preferences">
+    <initializer
+      class="org.eclipse.dltk.python.internal.core.PythonCorePreferenceInitializer" />
+  </extension>
   
    <extension
          id="nature"
@@ -57,6 +62,15 @@
       nature="org.eclipse.dltk.python.core.nature"
       priority="0">
     </seachFactory>
+  </extension>
+
+  <extension
+    point="org.eclipse.dltk.validators.core.validator">
+    <validatorType
+      class="org.eclipse.dltk.python.internal.core.parser.PythonTodoParserType"
+      id="org.eclipse.dltk.python.todo"
+      nature="org.eclipse.dltk.python.core.nature">
+    </validatorType>
   </extension>
 
 </plugin>
