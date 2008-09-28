@@ -102,8 +102,7 @@
        <page	          
 	          class="org.eclipse.dltk.python.internal.ui.preferences.PythonGlobalPreferencesPage"
 	          id="org.eclipse.dltk.python.preferences"
-	          name="%PythonPreferencePage.name"/>
-       
+	          name="%PythonPreferencePage.name"/>       
 	    <page
 	          category="org.eclipse.dltk.python.preferences"
 	          class="org.eclipse.dltk.python.internal.ui.preferences.PythonEditorPreferencesPage"
@@ -123,13 +122,17 @@
 	          category="org.eclipse.dltk.python.preferences.editor"
 	          class="org.eclipse.dltk.python.internal.ui.preferences.PythonSmartTypingPreferencePage"
 	          id="org.eclipse.dltk.python.ui.editor.SmartTyping"
-	          name="%PythonEditorSmartTypingPreferencePage.name"/>          
+	          name="%PythonEditorSmartTypingPreferencePage.name"/>       	             
 	    <page
           category="org.eclipse.dltk.python.preferences.editor"
           class="org.eclipse.dltk.python.internal.ui.preferences.PythonFoldingPreferencePage"
-          id="org.eclipse.dltk.python.ui.editor.PythonFolding"
-          name="%PythonEditorFoldingPreferencePage.name"/>	          
-	    
+          id="org.eclipse.dltk.python.ui.editor.PythonFolding"          
+          name="%PythonEditorFoldingPreferencePage.name"/>
+        <page
+          category="org.eclipse.dltk.python.preferences"
+          class="org.eclipse.dltk.python.internal.ui.preferences.PythonTodoTaskPreferencePage"
+          id="org.eclipse.dltk.python.ui.editor.TodoTasks"
+          name="%PythonTaskTags.name"/>  	    
 	 </extension>
   <extension
        point="org.eclipse.ui.propertyPages">

@@ -59,4 +59,9 @@ public final class PythonColorConstants {
 	 * The color key for Python decorator.
 	 */
 	public static final String PYTHON_DECORATOR = "DLTK_decorator";
+	
+	/**
+	 * The color key for TO-DO tasks in comments.
+	 */
+	public static final String PYTHON_TODO_TAG = DLTKColorConstants.TASK_TAG;
 }

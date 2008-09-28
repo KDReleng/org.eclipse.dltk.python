@@ -10,16 +10,18 @@
 package org.eclipse.dltk.python.internal.ui.text;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.dltk.compiler.task.TodoTaskPreferences;
 import org.eclipse.dltk.internal.ui.editor.ScriptSourceViewer;
+import org.eclipse.dltk.python.core.PythonPlugin;
 import org.eclipse.dltk.python.internal.ui.text.completion.PythonCompletionProcessor;
 import org.eclipse.dltk.python.internal.ui.text.completion.PythonContentAssistPreference;
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
 import org.eclipse.dltk.ui.CodeFormatterConstants;
 import org.eclipse.dltk.ui.text.AbstractScriptScanner;
 import org.eclipse.dltk.ui.text.IColorManager;
+import org.eclipse.dltk.ui.text.ScriptCommentScanner;
 import org.eclipse.dltk.ui.text.ScriptPresentationReconciler;
 import org.eclipse.dltk.ui.text.ScriptSourceViewerConfiguration;
-import org.eclipse.dltk.ui.text.SingleTokenScriptScanner;
 import org.eclipse.dltk.ui.text.completion.ContentAssistPreference;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IAutoEditStrategy;
@@ -78,9 +80,11 @@ public class PythonSourceViewerConfiguration extends
 				fPreferenceStore);
 		fStringScanner = new PythonStringScanner(getColorManager(),
 				fPreferenceStore);
-		fCommentScanner = new SingleTokenScriptScanner(getColorManager(),
-				fPreferenceStore,
-				PythonColorConstants.PYTHON_SINGLE_LINE_COMMENT);
+
+		fCommentScanner = new ScriptCommentScanner(getColorManager(),
+					fPreferenceStore, PythonColorConstants.PYTHON_SINGLE_LINE_COMMENT,
+					PythonColorConstants.PYTHON_TODO_TAG, new TodoTaskPreferences(
+							PythonPlugin.getDefault().getPluginPreferences()));   
 	}
 
 	/**

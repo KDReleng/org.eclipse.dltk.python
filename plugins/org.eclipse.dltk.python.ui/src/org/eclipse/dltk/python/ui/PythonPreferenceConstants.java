@@ -276,15 +276,19 @@ public class PythonPreferenceConstants extends PreferenceConstants
 	 * Value is of type <code>Boolean</code>. If <code>true</code> single line comments are rendered in underline. If <code>false</code>
 	 * the are rendered using no italic font style attribute.
 	 * </p>
-	 * 
-	 *
 	 */
-
 	public final static String EDITOR_STRING_UNDERLINE = PythonColorConstants.PYTHON_STRING + EDITOR_UNDERLINE_SUFFIX;
 
 	public final static String EDITOR_FUNCTION_DEFINITION_COLOR = PythonColorConstants.PYTHON_FUNCTION_DEFINITION;
 	public final static String EDITOR_CLASS_DEFINITION_COLOR = PythonColorConstants.PYTHON_CLASS_DEFINITION;
 	public final static String EDITOR_DECORATOR_COLOR = PythonColorConstants.PYTHON_DECORATOR;
+	
+	public final static String COMMENT_TASK_TAGS = PythonColorConstants.PYTHON_TODO_TAG;
+
+	public final static String COMMENT_TASK_TAGS_BOLD = COMMENT_TASK_TAGS
+			+ EDITOR_BOLD_SUFFIX;
+
+	
 	
 	public static void initializeDefaultValues( IPreferenceStore store ) {
 		PreferenceConstants.initializeDefaultValues(store);
@@ -316,6 +320,10 @@ public class PythonPreferenceConstants extends PreferenceConstants
 		store.setDefault( PreferenceConstants.EDITOR_SUB_WORD_NAVIGATION, true);		
 		store.setDefault( PreferenceConstants.EDITOR_TAB_WIDTH, 8);
 		store.setDefault( PreferenceConstants.EDITOR_SYNC_OUTLINE_ON_CURSOR_MOVE, true);
+		
+		PreferenceConverter.setDefault(store, COMMENT_TASK_TAGS, new RGB(127,
+				159, 191));
+		store.setDefault(COMMENT_TASK_TAGS_BOLD, true);
 		
 		// folding
 		store.setDefault(PreferenceConstants.EDITOR_FOLDING_ENABLED, true);
