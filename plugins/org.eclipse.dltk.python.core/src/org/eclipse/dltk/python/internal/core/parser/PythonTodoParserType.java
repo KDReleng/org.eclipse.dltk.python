@@ -1,8 +1,8 @@
 package org.eclipse.dltk.python.internal.core.parser;
 
 import org.eclipse.core.runtime.Preferences;
+import org.eclipse.dltk.core.builder.AbstractTodoTaskBuildParticipantType;
 import org.eclipse.dltk.python.core.PythonPlugin;
-import org.eclipse.dltk.validators.core.AbstractTodoTaskBuildParticipantType;
 
 public class PythonTodoParserType extends
 		AbstractTodoTaskBuildParticipantType {

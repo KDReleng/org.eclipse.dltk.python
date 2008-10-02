@@ -65,12 +65,12 @@
   </extension>
 
   <extension
-    point="org.eclipse.dltk.validators.core.validator">
-    <validatorType
+    point="org.eclipse.dltk.core.buildParticipant">
+    <buildParticipant
       class="org.eclipse.dltk.python.internal.core.parser.PythonTodoParserType"
       id="org.eclipse.dltk.python.todo"
       nature="org.eclipse.dltk.python.core.nature">
-    </validatorType>
+    </buildParticipant>
   </extension>
 
 </plugin>
