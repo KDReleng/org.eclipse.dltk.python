@@ -66,11 +66,20 @@
 
   <extension
     point="org.eclipse.dltk.core.buildParticipant">
+      <buildParticipant
+            class="org.eclipse.dltk.core.builder.ParserBuildParticipantFactory"
+            id="org.eclipse.dltk.python.buildParticipant.parser"
+            name="Python parser"
+            nature="org.eclipse.dltk.python.core.nature">
+      </buildParticipant>
     <buildParticipant
       class="org.eclipse.dltk.python.internal.core.parser.PythonTodoParserType"
       id="org.eclipse.dltk.python.todo"
       name="Python TODO task parser"
       nature="org.eclipse.dltk.python.core.nature">
+      <requires
+            id="org.eclipse.dltk.python.buildParticipant.parser">
+      </requires>
     </buildParticipant>
   </extension>
 
