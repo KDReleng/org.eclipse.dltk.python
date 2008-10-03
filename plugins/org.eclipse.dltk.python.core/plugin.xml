@@ -69,6 +69,7 @@
     <buildParticipant
       class="org.eclipse.dltk.python.internal.core.parser.PythonTodoParserType"
       id="org.eclipse.dltk.python.todo"
+      name="Python TODO task parser"
       nature="org.eclipse.dltk.python.core.nature">
     </buildParticipant>
   </extension>
