@@ -57,4 +57,8 @@ public class PythonLanguageToolkit extends AbstractLanguageToolkit {
 	public String getLanguageContentType() {
 		return "org.eclipse.dltk.pythonContentType";
 	}
+	
+	public String getPreferenceQualifier() {
+		return PythonPlugin.PLUGIN_ID;
+	}
 }
