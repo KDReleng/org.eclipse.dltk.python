@@ -12,12 +12,12 @@ public class PythonContentDescriber implements ITextContentDescriber {
 
 	public int describe(Reader contents, IContentDescription description)
 			throws IOException {
-		return VALID;
+		return INDETERMINATE;
 	}
 
 	public int describe(InputStream contents, IContentDescription description)
 			throws IOException {
-		return VALID;
+		return INDETERMINATE;
 	}
 
 	public QualifiedName[] getSupportedOptions() {
