@@ -13,5 +13,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.dltk.launching,
  org.eclipse.debug.core,
  org.eclipse.dltk.core,
- org.eclipse.dltk.python.debug
+ org.eclipse.dltk.python.debug,
+ org.eclipse.dltk.python.core
 Eclipse-LazyStart: true

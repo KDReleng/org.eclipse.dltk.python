@@ -12,6 +12,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.dltk.debug.ui.preferences.ExternalDebuggingEngineOptionsBlock;
 import org.eclipse.dltk.python.activestatedebugger.PythonActiveStateDebuggerConstants;
 import org.eclipse.dltk.python.activestatedebugger.PythonActiveStateDebuggerPlugin;
+import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPropertyAndPreferencePage;
 import org.eclipse.dltk.ui.preferences.AbstractOptionsBlock;
 import org.eclipse.dltk.ui.preferences.PreferenceKey;
@@ -91,6 +92,10 @@ public class PythonActiveStateDebuggerPreferencePage extends
 		return null;
 	}
 
+	protected String getNatureId() {
+		return PythonNature.NATURE_ID;
+	}
+	
 	/*
 	 * @see org.eclipse.dltk.internal.ui.preferences.PropertyAndPreferencePage#getPreferencePageId()
 	 */
