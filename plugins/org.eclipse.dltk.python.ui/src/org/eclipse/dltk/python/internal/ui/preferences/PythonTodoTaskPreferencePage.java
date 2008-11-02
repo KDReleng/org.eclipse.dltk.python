@@ -2,6 +2,7 @@ package org.eclipse.dltk.python.internal.ui.preferences;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Preferences;
+import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.python.core.PythonPlugin;
 import org.eclipse.dltk.ui.PreferencesAdapter;
 import org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPropertyAndPreferencePage;
@@ -52,6 +53,10 @@ public class PythonTodoTaskPreferencePage extends
 				return CASE_SENSITIVE;
 			}
 		};
+	}
+	
+	protected String getNatureId() {
+		return PythonNature.NATURE_ID;
 	}
 
 	protected String getProjectHelpId() {
