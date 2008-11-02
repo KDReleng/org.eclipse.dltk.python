@@ -65,7 +65,9 @@ public class PythonSourceViewerConfiguration extends
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getTabWidth(org.eclipse.jface.text.source.ISourceViewer)
+	 * @see
+	 * org.eclipse.jface.text.source.SourceViewerConfiguration#getTabWidth(org
+	 * .eclipse.jface.text.source.ISourceViewer)
 	 */
 	public int getTabWidth(ISourceViewer sourceViewer) {
 		if (fPreferenceStore == null)
@@ -81,15 +83,13 @@ public class PythonSourceViewerConfiguration extends
 		fStringScanner = new PythonStringScanner(getColorManager(),
 				fPreferenceStore);
 
-		fCommentScanner = new ScriptCommentScanner(getColorManager(),
-					fPreferenceStore, PythonColorConstants.PYTHON_SINGLE_LINE_COMMENT,
-					PythonColorConstants.PYTHON_TODO_TAG, new TodoTaskPreferences(
-							PythonPlugin.getDefault().getPluginPreferences()));   
+		fCommentScanner = createCommentScanner(
+				PythonColorConstants.PYTHON_SINGLE_LINE_COMMENT,
+				PythonColorConstants.PYTHON_TODO_TAG);
 	}
 
 	/**
-	 * @return <code>true</code> iff the new setup without text tools is in
-	 *         use.
+	 * @return <code>true</code> iff the new setup without text tools is in use.
 	 */
 	private boolean isNewSetup() {
 		return fTextTools == null;
@@ -173,8 +173,9 @@ public class PythonSourceViewerConfiguration extends
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getAutoEditStrategies(org.eclipse.jface.text.source.ISourceViewer,
-	 *      java.lang.String)
+	 * @see
+	 * org.eclipse.jface.text.source.SourceViewerConfiguration#getAutoEditStrategies
+	 * (org.eclipse.jface.text.source.ISourceViewer, java.lang.String)
 	 */
 	public IAutoEditStrategy[] getAutoEditStrategies(
 			ISourceViewer sourceViewer, String contentType) {
@@ -202,6 +203,7 @@ public class PythonSourceViewerConfiguration extends
 		assistant.setContentAssistProcessor(processor,
 				IDocument.DEFAULT_CONTENT_TYPE);
 	}
+
 	public IInformationPresenter getOutlinePresenter(ScriptSourceViewer viewer,
 			boolean doCodeResolve) {
 		return null;

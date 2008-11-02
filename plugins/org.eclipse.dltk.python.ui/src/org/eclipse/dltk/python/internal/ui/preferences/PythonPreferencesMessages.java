@@ -21,4 +21,6 @@ public class PythonPreferencesMessages extends NLS {
 	public static String PythonSmartTypingConfigurationBlock_closeBrackets;
 	public static String PythonSmartTypingConfigurationBlock_closeStrings;
 	public static String PythonSmartTypingConfigurationBlock_typing_tabTitle;
+	
+	public static String TodoTaskDescription;
 }

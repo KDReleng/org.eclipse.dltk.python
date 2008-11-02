@@ -131,7 +131,7 @@
         <page
           category="org.eclipse.dltk.python.preferences"
           class="org.eclipse.dltk.python.internal.ui.preferences.PythonTodoTaskPreferencePage"
-          id="org.eclipse.dltk.python.ui.editor.TodoTasks"
+          id="org.eclipse.dltk.python.preferences.todo"
           name="%PythonTaskTags.name"/>  	    
 	 </extension>
   <extension
@@ -148,6 +148,17 @@
       </enabledWhen>
       <keywordReference
         id="org.eclipse.dltk.ui.buildpath" />
+    </page>
+    <page
+          category="org.eclipse.dltk.python.propertyPage"
+          class="org.eclipse.dltk.python.internal.ui.preferences.PythonTodoTaskPreferencePage"
+          id="org.eclipse.dltk.python.propertyPage.todo"
+          name="%PythonTodoPropertyPage.name">
+      <enabledWhen>
+        <adapt type="org.eclipse.core.resources.IProject">
+          <test property="org.eclipse.core.resources.projectNature" value="org.eclipse.dltk.python.core.nature"/>
+        </adapt>         
+      </enabledWhen>
     </page>    
     <page
       name="%PythonPropertyPage.name"
