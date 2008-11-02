@@ -56,6 +56,10 @@ public class PythonDebuggingEnginePreferencePage extends
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	protected String getNatureId() {
+		return PythonNature.NATURE_ID;
+	}
 
 	/*
 	 * @see org.eclipse.dltk.internal.ui.preferences.PropertyAndPreferencePage#getPreferencePageId()

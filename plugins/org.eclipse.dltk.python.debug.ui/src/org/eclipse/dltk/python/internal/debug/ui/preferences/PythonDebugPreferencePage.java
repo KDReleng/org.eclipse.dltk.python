@@ -3,6 +3,7 @@ package org.eclipse.dltk.python.internal.debug.ui.preferences;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.dltk.debug.core.DLTKDebugPreferenceConstants;
 import org.eclipse.dltk.debug.ui.preferences.AbstractDebuggingOptionsBlock;
+import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.python.internal.debug.PythonDebugPlugin;
 import org.eclipse.dltk.ui.PreferencesAdapter;
 import org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPropertyAndPreferencePage;
@@ -59,6 +60,10 @@ public class PythonDebugPreferencePage extends
 	protected String getHelpId() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	protected String getNatureId() {
+		return PythonNature.NATURE_ID;
 	}
 
 	/*
