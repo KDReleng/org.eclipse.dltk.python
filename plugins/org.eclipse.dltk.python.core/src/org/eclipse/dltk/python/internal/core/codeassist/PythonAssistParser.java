@@ -15,10 +15,26 @@ import java.util.List;
 
 import org.eclipse.dltk.ast.ASTNode;
 import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
-import org.eclipse.dltk.codeassist.AbstractAssistParser;
+import org.eclipse.dltk.ast.parser.ISourceParser;
+import org.eclipse.dltk.codeassist.IAssistParser;
 import org.eclipse.dltk.compiler.env.ISourceModule;
+import org.eclipse.dltk.core.DLTKLanguageManager;
+import org.eclipse.dltk.python.core.PythonNature;
 
-public abstract class PythonAssistParser extends AbstractAssistParser {
+public abstract class PythonAssistParser implements IAssistParser {
+	protected ISourceParser parser;
+
+	protected ModuleDeclaration module;
+
+	protected ASTNode assistNodeParent = null;
+
+	protected PythonAssistParser() {
+		parser = DLTKLanguageManager.getSourceParser(PythonNature.NATURE_ID);
+	}
+
+	public ASTNode getAssistNodeParent() {
+		return assistNodeParent;
+	}
 
 	protected void findElementsTo(List statements, ASTNode node, List elements) {
 		if (statements == null) {
@@ -42,25 +58,29 @@ public abstract class PythonAssistParser extends AbstractAssistParser {
 	}
 
 	protected List findLevelsTo(ASTNode astNodeParent) {
-		ModuleDeclaration module = getModule();
-		
 		List elements = new ArrayList();
-		if (module != null || astNodeParent instanceof ModuleDeclaration) {
-			if (module == null) {
-				module = (ModuleDeclaration) astNodeParent;
+		if (this.module != null || astNodeParent instanceof ModuleDeclaration) {
+			if (this.module == null) {
+				this.module = (ModuleDeclaration) astNodeParent;
 			}
-			elements.add(module);
-			findElementsTo(PythonASTUtil.getStatements(module),
+			elements.add(this.module);
+			findElementsTo(PythonASTUtil.getStatements(this.module),
 					astNodeParent, elements);
 		}
 		return elements;
 	}
 
-	protected ModuleDeclaration postProcess(ModuleDeclaration module,
-			ISourceModule sourceUnit) {
+	public void setSource(ModuleDeclaration unit) {
+		this.module = unit;
+	}
+
+	public ModuleDeclaration parse(ISourceModule sourceUnit) {
+		ModuleDeclaration module = this.parser.parse(sourceUnit.getFileName(),
+				sourceUnit.getContentsAsCharArray(), null);
 		module.rebuild();
+
 		PythonASTUtil.extendStatements(module, sourceUnit.getSourceContents());
-		
+
 		return module;
 	}
 }

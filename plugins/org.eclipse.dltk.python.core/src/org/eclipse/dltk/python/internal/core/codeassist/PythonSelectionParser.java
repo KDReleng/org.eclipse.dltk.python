@@ -10,6 +10,7 @@
 package org.eclipse.dltk.python.internal.core.codeassist;
 
 import org.eclipse.dltk.ast.ASTNode;
+import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
 
 public class PythonSelectionParser extends PythonAssistParser {
 	private final boolean VERBOSE = true;
@@ -21,5 +22,9 @@ public class PythonSelectionParser extends PythonAssistParser {
 		if( VERBOSE ) {
 			System.out.println(node);
 		}
+	}
+
+	public ModuleDeclaration getModule() {
+		return null;
 	}
 }
