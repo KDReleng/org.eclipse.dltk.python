@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.dltk.python.internal.ui.rules.PythonFloatNumberRule;
 import org.eclipse.dltk.ui.text.AbstractScriptScanner;
 import org.eclipse.dltk.ui.text.IColorManager;
+import org.eclipse.dltk.ui.text.rules.ScriptWordRule;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.rules.EndOfLineRule;
 import org.eclipse.jface.text.rules.IToken;
@@ -57,11 +58,16 @@ public class PythonCodeScanner extends AbstractScriptScanner {
 		// Add generic whitespace rule.
 		rules.add(new WhitespaceRule(new PythonWhitespaceDetector()));
 		// Add word rule for keywords, types, and constants.
-		PythonWordRule wordRule = new PythonWordRule(new PythonWordDetector(), other, cls, def);
+		
+		ScriptWordRule wordRule = new ScriptWordRule(new PythonWordDetector());
+		wordRule.addNextTokenAfterSeen("class", cls);
+		wordRule.addNextTokenAfterSeen("def", def);
+		
 		for (int i = 0; i < fgKeywords.length; i++) {
 			wordRule.addWord(fgKeywords[i], keyword);
 		}
 		wordRule.addWord(fgReturnKeyword, keywordReturn);
+		
 		rules.add(wordRule);
 		rules.add(new WordRule(new PythonDecoratorDetector(), decorator));
 		rules.add(new PythonFloatNumberRule(number));
