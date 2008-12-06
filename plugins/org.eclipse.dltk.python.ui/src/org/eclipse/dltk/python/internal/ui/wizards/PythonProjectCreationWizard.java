@@ -19,9 +19,9 @@ import org.eclipse.dltk.core.DLTKCore;
 import org.eclipse.dltk.core.IModelElement;
 import org.eclipse.dltk.launching.IInterpreterInstall;
 import org.eclipse.dltk.python.core.PythonNature;
+import org.eclipse.dltk.python.internal.ui.PythonImages;
 import org.eclipse.dltk.python.internal.ui.PythonUI;
 import org.eclipse.dltk.python.internal.ui.preferences.PythonBuildPathsBlock;
-import org.eclipse.dltk.ui.DLTKPluginImages;
 import org.eclipse.dltk.ui.DLTKUIPlugin;
 import org.eclipse.dltk.ui.util.BusyIndicatorRunnableContext;
 import org.eclipse.dltk.ui.util.IStatusChangeListener;
@@ -41,7 +41,7 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 	private IConfigurationElement fConfigElement;
 
 	public PythonProjectCreationWizard() {
-		setDefaultPageImageDescriptor(DLTKPluginImages.DESC_WIZBAN_NEWPRJ);
+		setDefaultPageImageDescriptor(PythonImages.DESC_WIZBAN_PROJECT_CREATION);
 		setDialogSettings(DLTKUIPlugin.getDefault().getDialogSettings());
 		setWindowTitle(PythonWizardMessages.ProjectCreationWizard_title);
 	}
