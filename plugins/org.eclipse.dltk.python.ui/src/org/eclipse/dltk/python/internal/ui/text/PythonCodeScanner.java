@@ -59,7 +59,8 @@ public class PythonCodeScanner extends AbstractScriptScanner {
 		rules.add(new WhitespaceRule(new PythonWhitespaceDetector()));
 		// Add word rule for keywords, types, and constants.
 		
-		ScriptWordRule wordRule = new ScriptWordRule(new PythonWordDetector());
+		ScriptWordRule wordRule = new ScriptWordRule(new PythonWordDetector(),
+				other);
 		wordRule.addNextTokenAfterSeen("class", cls);
 		wordRule.addNextTokenAfterSeen("def", def);
 		
