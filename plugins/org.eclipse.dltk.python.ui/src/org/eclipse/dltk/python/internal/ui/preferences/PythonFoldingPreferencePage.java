@@ -10,52 +10,47 @@
 
 package org.eclipse.dltk.python.internal.ui.preferences;
 
-
 import org.eclipse.dltk.python.internal.ui.PythonUI;
+import org.eclipse.dltk.python.internal.ui.text.folding.PythonFoldingPreferenceBlock;
 import org.eclipse.dltk.ui.preferences.AbstractConfigurationBlockPreferencePage;
 import org.eclipse.dltk.ui.preferences.IPreferenceConfigurationBlock;
 import org.eclipse.dltk.ui.preferences.OverlayPreferenceStore;
-import org.eclipse.dltk.ui.preferences.PreferencesMessages;
+import org.eclipse.dltk.ui.text.folding.DefaultFoldingPreferenceConfigurationBlock;
+import org.eclipse.dltk.ui.text.folding.IFoldingPreferenceBlock;
+import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * The page for setting the editor options.
+ * Python folding preference page
  */
-public final class PythonFoldingPreferencePage extends AbstractConfigurationBlockPreferencePage {
-	
-	/*
-	 * @see org.eclipse.ui.internal.editors.text.AbstractConfigureationBlockPreferencePage#getHelpId()
-	 */
+public final class PythonFoldingPreferencePage extends
+		AbstractConfigurationBlockPreferencePage {
+
 	protected String getHelpId() {
-		//return IScriptHelpContextIds.JAVA_EDITOR_PREFERENCE_PAGE;
 		return null;
 	}
 
-	/*
-	 * @see org.eclipse.ui.internal.editors.text.AbstractConfigurationBlockPreferencePage#setDescription()
-	 */
 	protected void setDescription() {
-		String description= PreferencesMessages.EditorPreferencePage_folding_title; 
-		setDescription(description);
+		// setDescription(PreferencesMessages.EditorPreferencePage_folding_title);
 	}
-	
-	/*
-	 * @see org.org.eclipse.ui.internal.editors.text.AbstractConfigurationBlockPreferencePage#setPreferenceStore()
-	 */
+
 	protected void setPreferenceStore() {
 		setPreferenceStore(PythonUI.getDefault().getPreferenceStore());
 	}
-	
-	
+
 	protected Label createDescriptionLabel(Composite parent) {
 		return null; // no description for new look.
 	}
 
-	/*
-	 * @see org.eclipse.ui.internal.editors.text.AbstractConfigureationBlockPreferencePage#createConfigurationBlock(org.eclipse.ui.internal.editors.text.OverlayPreferenceStore)
-	 */
-	protected IPreferenceConfigurationBlock createConfigurationBlock(OverlayPreferenceStore overlayPreferenceStore) {
-		return new PythonFoldingConfigurationBlock(overlayPreferenceStore, this);
+	protected IPreferenceConfigurationBlock createConfigurationBlock(
+			OverlayPreferenceStore overlayPreferenceStore) {
+		return new DefaultFoldingPreferenceConfigurationBlock(
+				overlayPreferenceStore, this) {
+			protected IFoldingPreferenceBlock createSourceCodeBlock(
+					OverlayPreferenceStore store, PreferencePage page) {
+				return new PythonFoldingPreferenceBlock(store, page);
+			}
+		};
 	}
 }

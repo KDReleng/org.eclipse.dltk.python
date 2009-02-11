@@ -288,8 +288,6 @@ public class PythonPreferenceConstants extends PreferenceConstants
 	public final static String COMMENT_TASK_TAGS_BOLD = COMMENT_TASK_TAGS
 			+ EDITOR_BOLD_SUFFIX;
 
-	
-	
 	public static void initializeDefaultValues( IPreferenceStore store ) {
 		PreferenceConstants.initializeDefaultValues(store);
 		
@@ -326,10 +324,7 @@ public class PythonPreferenceConstants extends PreferenceConstants
 		store.setDefault(COMMENT_TASK_TAGS_BOLD, true);
 		
 		// folding
-		store.setDefault(PreferenceConstants.EDITOR_FOLDING_ENABLED, true);
-//		store.setDefault(PreferenceConstants.EDITOR_FOLDING_INNERTYPES, false);
-//		store.setDefault(PreferenceConstants.EDITOR_FOLDING_METHODS, false);
-//		store.setDefault(PreferenceConstants.EDITOR_FOLDING_IMPORTS, true);
+		initializeFoldingDefaults(store);
 		
 		store.setDefault (CodeFormatterConstants.FORMATTER_TAB_CHAR, CodeFormatterConstants.TAB);
 		store.setDefault (CodeFormatterConstants.FORMATTER_TAB_SIZE, "4");
@@ -346,4 +341,11 @@ public class PythonPreferenceConstants extends PreferenceConstants
 		
 		store.setDefault(PreferenceConstants.CODEASSIST_AUTOACTIVATION_TRIGGERS, ".");
 	}
+	
+	protected static void initializeFoldingDefaults(IPreferenceStore store)
+    {
+        store.setDefault(PreferenceConstants.EDITOR_FOLDING_LINES_LIMIT, 2);
+        store.setDefault(PreferenceConstants.EDITOR_COMMENTS_FOLDING_ENABLED, true);
+    }
+	
 }
