@@ -115,6 +115,11 @@
               name="%PythonEditorTemplatesPreferencePage.name"/>
         <page
               category="org.eclipse.dltk.python.preferences.editor"
+              class="org.eclipse.dltk.ui.preferences.ScriptEditorHoverPreferencePage:org.eclipse.dltk.python.core.nature"
+              id="org.eclipse.dltk.python.ui.editor.Hovers"
+              name="%PythonEditorHoversPreferencePage.name"/>
+        <page
+              category="org.eclipse.dltk.python.preferences.editor"
               class="org.eclipse.dltk.python.internal.ui.preferences.PythonEditorSyntaxColoringPreferencePage"
               id="org.eclipse.dltk.python.ui.editor.SyntaxColoring"
               name="%PythonEditorSyntaxColoringPreferencePage.name"/>
