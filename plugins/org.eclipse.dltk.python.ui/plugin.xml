@@ -44,6 +44,20 @@
          </contentTypeBinding>
       </editor>
    </extension>
+
+  <extension point="org.eclipse.ui.editorActions">
+    <editorContribution
+      targetID="org.eclipse.dltk.python.ui.editor.PythonEditor"
+      id="org.eclipse.dltk.python.internal.ui.editor.PythonEditor.ruler">
+      <action
+        label="Python Selection Ruler action"
+        class="org.eclipse.dltk.ui.actions.ScriptEditorRulerActionDelegate:org.eclipse.dltk.python.core.nature"
+        actionID="RulerClick"
+        id="org.eclipse.dltk.python.internal.ui.editor.PythonSelectRulerAction">
+      </action>
+    </editorContribution>
+  </extension>   
+   
   <extension
          point="org.eclipse.ui.contexts">
       <context
