@@ -27,7 +27,7 @@ public class PythonCodeTemplatesPreferencePage extends
 	/*
 	 * @see org.eclipse.dltk.ui.templates.ScriptTemplatePreferencePage#setDocumentParticioner(org.eclipse.jface.text.IDocument)
 	 */
-	protected void setDocumentParticioner(IDocument document) {
+	protected void setDocumentPartitioner(IDocument document) {
 		getTextTools().setupDocumentPartitioner(document,
 				IPythonPartitions.PYTHON_PARTITIONING);
 	}
