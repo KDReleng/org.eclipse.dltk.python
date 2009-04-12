@@ -16,7 +16,7 @@ import org.eclipse.dltk.python.core.PythonConstants;
 import org.eclipse.dltk.python.core.PythonLanguageToolkit;
 import org.eclipse.dltk.python.internal.ui.editor.PythonEditor;
 import org.eclipse.dltk.python.internal.ui.text.SimplePythonSourceViewerConfiguration;
-import org.eclipse.dltk.ui.IDLTKUILanguageToolkit;
+import org.eclipse.dltk.ui.AbstractDLTKUILanguageToolkit;
 import org.eclipse.dltk.ui.ScriptElementLabels;
 import org.eclipse.dltk.ui.text.ScriptSourceViewerConfiguration;
 import org.eclipse.dltk.ui.text.ScriptTextTools;
@@ -24,7 +24,7 @@ import org.eclipse.dltk.ui.viewsupport.ScriptUILabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-public class PythonUILanguageToolkit implements IDLTKUILanguageToolkit {
+public class PythonUILanguageToolkit extends AbstractDLTKUILanguageToolkit {
 	private static ScriptElementLabels sInstance = new ScriptElementLabels() {
 		protected void getScriptFolderLabel(IScriptFolder folder,
 				StringBuffer buf) {
