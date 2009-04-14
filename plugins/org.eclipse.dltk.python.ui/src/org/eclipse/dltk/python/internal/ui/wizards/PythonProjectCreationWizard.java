@@ -9,15 +9,12 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.ui.wizards;
 
-import java.util.Observable;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.dltk.core.DLTKCore;
 import org.eclipse.dltk.core.IModelElement;
-import org.eclipse.dltk.launching.IInterpreterInstall;
 import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.python.internal.ui.PythonImages;
 import org.eclipse.dltk.python.internal.ui.PythonUI;
@@ -50,41 +47,27 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 		super.addPages();
 		fFirstPage = new ProjectWizardFirstPage() {
 
-			PythonInterpreterGroup fInterpreterGroup;
-        	
-        	final class PythonInterpreterGroup extends AbstractInterpreterGroup {
-        		
-        		public PythonInterpreterGroup(Composite composite) {
-        			super (composite);
-        		}
+			final class PythonInterpreterGroup extends AbstractInterpreterGroup {
+
+				public PythonInterpreterGroup(Composite composite) {
+					super(composite);
+				}
 
 				protected String getCurrentLanguageNature() {
 					return PythonNature.NATURE_ID;
 				}
-				
+
 				protected String getIntereprtersPreferencePageId() {
-					return "org.eclipse.dltk.python.preferences.interpreters";
+					return "org.eclipse.dltk.python.preferences.interpreters"; //$NON-NLS-1$
 				}
-            };
-        	
-			protected void createInterpreterGroup(Composite parent) {
-				fInterpreterGroup = new PythonInterpreterGroup(parent);
-			}
 
-			protected Observable getInterpreterGroupObservable() {
-				return fInterpreterGroup;
-			}
+				protected boolean isTargetEnvironmentAllowed() {
+					return false;
+				}
+			};
 
-			protected boolean supportInterpreter() {
-				return true;
-			}
-
-			protected IInterpreterInstall getInterpreter() {
-				return fInterpreterGroup.getSelectedInterpreter();
-			}
-
-			protected void handlePossibleInterpreterChange() {
-				fInterpreterGroup.handlePossibleInterpreterChange();
+			protected IInterpreterGroup createInterpreterGroup(Composite parent) {
+				return new PythonInterpreterGroup(parent);
 			}
 
 			protected boolean interpeterRequired() {
@@ -92,12 +75,17 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 				return false;
 			}
 		};
-		fFirstPage.setTitle(PythonWizardMessages.ProjectCreationWizardFirstPage_title);
-		fFirstPage.setDescription(PythonWizardMessages.ProjectCreationWizardFirstPage_description);
+		fFirstPage
+				.setTitle(PythonWizardMessages.ProjectCreationWizardFirstPage_title);
+		fFirstPage
+				.setDescription(PythonWizardMessages.ProjectCreationWizardFirstPage_description);
 		addPage(fFirstPage);
 		fSecondPage = new ProjectWizardSecondPage(fFirstPage) {
-			protected BuildpathsBlock createBuildpathBlock(IStatusChangeListener listener) {
-				return new PythonBuildPathsBlock(new BusyIndicatorRunnableContext(), listener, 0, useNewSourcePage(), null);
+			protected BuildpathsBlock createBuildpathBlock(
+					IStatusChangeListener listener) {
+				return new PythonBuildPathsBlock(
+						new BusyIndicatorRunnableContext(), listener, 0,
+						useNewSourcePage(), null);
 			}
 
 			protected String getScriptNature() {
