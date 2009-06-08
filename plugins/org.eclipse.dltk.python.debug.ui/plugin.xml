@@ -185,7 +185,7 @@
    </extension>   
    <extension
          point="org.eclipse.dltk.ui.buildpathContainerPage">
-      <buildpathContainerPath
+      <buildpathContainerPage
             class="org.eclipse.dltk.python.internal.debug.ui.interpreters.PythonInterpreterContainerWizardPage"
             id="org.eclipse.dltk.python.launching.INTERPRETER_CONTAINER"
             name="Python Interpreter Libraries"
