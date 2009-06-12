@@ -16,10 +16,10 @@ public interface IPythonPartitions {
 
 	public final static String PYTHON_PARTITIONING = PythonConstants.PYTHON_PARTITIONING;
 
-	public final static String PYTHON_COMMENT = "__python_comment";
-	public final static String PYTHON_STRING = "__python_string";
+	public final static String PYTHON_COMMENT = "__python_comment"; //$NON-NLS-1$
+	public final static String PYTHON_STRING = "__python_string"; //$NON-NLS-1$
 
-	public final static String[] PYTHON_PARITION_TYPES = new String[] {
-			IPythonPartitions.PYTHON_STRING, IPythonPartitions.PYTHON_COMMENT, IDocument.DEFAULT_CONTENT_TYPE
-	};
+	public final static String[] PYTHON_PARTITION_TYPES = new String[] {
+			IPythonPartitions.PYTHON_STRING, IPythonPartitions.PYTHON_COMMENT,
+			IDocument.DEFAULT_CONTENT_TYPE };
 }

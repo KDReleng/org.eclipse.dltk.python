@@ -36,7 +36,7 @@ public class PythonFoldingStructureProvider extends
 	}
 
 	protected String[] getPartitionTypes() {
-		return IPythonPartitions.PYTHON_PARITION_TYPES;
+		return IPythonPartitions.PYTHON_PARTITION_TYPES;
 	}
 
 	protected String getNatureId() {
