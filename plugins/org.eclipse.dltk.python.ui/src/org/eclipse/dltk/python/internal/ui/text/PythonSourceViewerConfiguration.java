@@ -56,7 +56,7 @@ public class PythonSourceViewerConfiguration extends
 	}
 
 	public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
-		return IPythonPartitions.PYTHON_PARITION_TYPES;
+		return IPythonPartitions.PYTHON_PARTITION_TYPES;
 	}
 
 	public String[] getIndentPrefixes(ISourceViewer sourceViewer,
