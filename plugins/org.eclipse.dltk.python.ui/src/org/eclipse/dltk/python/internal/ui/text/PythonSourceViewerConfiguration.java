@@ -10,16 +10,12 @@
 package org.eclipse.dltk.python.internal.ui.text;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.dltk.compiler.task.TodoTaskPreferences;
 import org.eclipse.dltk.internal.ui.editor.ScriptSourceViewer;
-import org.eclipse.dltk.python.core.PythonPlugin;
 import org.eclipse.dltk.python.internal.ui.text.completion.PythonCompletionProcessor;
 import org.eclipse.dltk.python.internal.ui.text.completion.PythonContentAssistPreference;
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
-import org.eclipse.dltk.ui.CodeFormatterConstants;
 import org.eclipse.dltk.ui.text.AbstractScriptScanner;
 import org.eclipse.dltk.ui.text.IColorManager;
-import org.eclipse.dltk.ui.text.ScriptCommentScanner;
 import org.eclipse.dltk.ui.text.ScriptPresentationReconciler;
 import org.eclipse.dltk.ui.text.ScriptSourceViewerConfiguration;
 import org.eclipse.dltk.ui.text.completion.ContentAssistPreference;
@@ -57,23 +53,6 @@ public class PythonSourceViewerConfiguration extends
 
 	public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
 		return IPythonPartitions.PYTHON_PARTITION_TYPES;
-	}
-
-	public String[] getIndentPrefixes(ISourceViewer sourceViewer,
-			String contentType) {
-		return new String[] { "\t", "        " };
-	}
-
-	/*
-	 * @see
-	 * org.eclipse.jface.text.source.SourceViewerConfiguration#getTabWidth(org
-	 * .eclipse.jface.text.source.ISourceViewer)
-	 */
-	public int getTabWidth(ISourceViewer sourceViewer) {
-		if (fPreferenceStore == null)
-			return super.getTabWidth(sourceViewer);
-		return fPreferenceStore
-				.getInt(CodeFormatterConstants.FORMATTER_TAB_SIZE);
 	}
 
 	protected void initializeScanners() {
