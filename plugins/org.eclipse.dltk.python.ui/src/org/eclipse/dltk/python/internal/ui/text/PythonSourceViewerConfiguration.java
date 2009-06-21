@@ -10,7 +10,6 @@
 package org.eclipse.dltk.python.internal.ui.text;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.dltk.internal.ui.editor.ScriptSourceViewer;
 import org.eclipse.dltk.python.internal.ui.text.completion.PythonCompletionProcessor;
 import org.eclipse.dltk.python.internal.ui.text.completion.PythonContentAssistPreference;
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
@@ -23,7 +22,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
-import org.eclipse.jface.text.information.IInformationPresenter;
 import org.eclipse.jface.text.information.IInformationProvider;
 import org.eclipse.jface.text.information.InformationPresenter;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
@@ -183,8 +181,4 @@ public class PythonSourceViewerConfiguration extends
 				IDocument.DEFAULT_CONTENT_TYPE);
 	}
 
-	public IInformationPresenter getOutlinePresenter(ScriptSourceViewer viewer,
-			boolean doCodeResolve) {
-		return null;
-	}
 }
