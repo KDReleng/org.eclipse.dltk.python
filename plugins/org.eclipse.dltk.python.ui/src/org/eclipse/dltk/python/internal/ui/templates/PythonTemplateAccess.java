@@ -13,7 +13,7 @@ public class PythonTemplateAccess extends ScriptTemplateAccess {
 
 	private static PythonTemplateAccess instance;
 	
-	public static PythonTemplateAccess getInstance() {
+	public static synchronized PythonTemplateAccess getInstance() {
 		if (instance == null) {
 			instance = new PythonTemplateAccess();
 		}
