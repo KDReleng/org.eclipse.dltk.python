@@ -17,7 +17,7 @@
 <feature
       id="org.eclipse.dltk.python"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="2.0.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
@@ -37,9 +37,9 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-    <requires>
+   <requires>
       <import plugin="org.eclipse.core.runtime" version="3.3.0" match="compatible"/>
-      <import feature="org.eclipse.dltk.core" version="1.0.0" match="compatible"/>
+      <import feature="org.eclipse.dltk.core" version="2.0.0" match="compatible"/>
    </requires>
 
    <plugin
