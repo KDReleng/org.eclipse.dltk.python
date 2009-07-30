@@ -17,10 +17,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/technology/dltk/updates/"/>
-   </url>
-
    <plugin
          id="org.eclipse.dltk.python.tests"
          download-size="0"
