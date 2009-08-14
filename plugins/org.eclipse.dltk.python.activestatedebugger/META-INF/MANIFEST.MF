@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.dltk.python.debug,
  org.eclipse.dltk.python.core
 Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
