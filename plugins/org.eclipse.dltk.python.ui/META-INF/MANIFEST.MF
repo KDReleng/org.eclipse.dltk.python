@@ -25,4 +25,4 @@ Export-Package: org.eclipse.dltk.python.internal.ui,
  org.eclipse.dltk.python.internal.ui.text,
  org.eclipse.dltk.python.ui,
  org.eclipse.dltk.python.ui.text
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
