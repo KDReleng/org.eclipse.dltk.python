@@ -53,10 +53,6 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 					super(composite);
 				}
 
-				protected String getCurrentLanguageNature() {
-					return PythonNature.NATURE_ID;
-				}
-
 				protected String getIntereprtersPreferencePageId() {
 					return "org.eclipse.dltk.python.preferences.interpreters"; //$NON-NLS-1$
 				}
@@ -65,6 +61,11 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 					return false;
 				}
 			};
+
+			@Override
+			public String getScriptNature() {
+				return PythonNature.NATURE_ID;
+			}
 
 			protected IInterpreterGroup createInterpreterGroup(Composite parent) {
 				return new PythonInterpreterGroup(parent);
@@ -86,10 +87,6 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 				return new PythonBuildPathsBlock(
 						new BusyIndicatorRunnableContext(), listener, 0,
 						useNewSourcePage(), null);
-			}
-
-			protected String getScriptNature() {
-				return PythonNature.NATURE_ID;
 			}
 
 			protected IPreferenceStore getPreferenceStore() {
