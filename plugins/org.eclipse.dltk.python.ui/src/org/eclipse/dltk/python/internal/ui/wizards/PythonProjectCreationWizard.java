@@ -55,7 +55,6 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 			@Override
 			protected IInterpreterGroup createInterpreterGroup(Composite parent) {
 				return new DefaultInterpreterGroup(parent,
-						"org.eclipse.dltk.python.preferences.interpreters", //$NON-NLS-1$
 						DefaultInterpreterGroupOption.NO_TARGET_ENVIRONMENT);
 			}
 
