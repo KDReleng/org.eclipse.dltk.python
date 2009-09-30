@@ -47,30 +47,19 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 		super.addPages();
 		fFirstPage = new ProjectWizardFirstPage() {
 
-			final class PythonInterpreterGroup extends AbstractInterpreterGroup {
-
-				public PythonInterpreterGroup(Composite composite) {
-					super(composite);
-				}
-
-				protected String getIntereprtersPreferencePageId() {
-					return "org.eclipse.dltk.python.preferences.interpreters"; //$NON-NLS-1$
-				}
-
-				protected boolean isTargetEnvironmentAllowed() {
-					return false;
-				}
-			};
-
 			@Override
 			public String getScriptNature() {
 				return PythonNature.NATURE_ID;
 			}
 
+			@Override
 			protected IInterpreterGroup createInterpreterGroup(Composite parent) {
-				return new PythonInterpreterGroup(parent);
+				return new DefaultInterpreterGroup(parent,
+						"org.eclipse.dltk.python.preferences.interpreters", //$NON-NLS-1$
+						DefaultInterpreterGroupOption.NO_TARGET_ENVIRONMENT);
 			}
 
+			@Override
 			protected boolean interpeterRequired() {
 				// TODO Auto-generated method stub
 				return false;
