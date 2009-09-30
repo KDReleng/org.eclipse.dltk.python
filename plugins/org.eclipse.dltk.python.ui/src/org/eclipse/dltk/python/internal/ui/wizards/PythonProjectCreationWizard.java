@@ -17,7 +17,6 @@ import org.eclipse.dltk.core.DLTKCore;
 import org.eclipse.dltk.core.IModelElement;
 import org.eclipse.dltk.python.core.PythonNature;
 import org.eclipse.dltk.python.internal.ui.PythonImages;
-import org.eclipse.dltk.python.internal.ui.PythonUI;
 import org.eclipse.dltk.python.internal.ui.preferences.PythonBuildPathsBlock;
 import org.eclipse.dltk.ui.DLTKUIPlugin;
 import org.eclipse.dltk.ui.util.BusyIndicatorRunnableContext;
@@ -26,7 +25,6 @@ import org.eclipse.dltk.ui.wizards.BuildpathsBlock;
 import org.eclipse.dltk.ui.wizards.NewElementWizard;
 import org.eclipse.dltk.ui.wizards.ProjectWizardFirstPage;
 import org.eclipse.dltk.ui.wizards.ProjectWizardSecondPage;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
@@ -77,9 +75,6 @@ public class PythonProjectCreationWizard extends NewElementWizard implements
 						useNewSourcePage(), null);
 			}
 
-			protected IPreferenceStore getPreferenceStore() {
-				return PythonUI.getDefault().getPreferenceStore();
-			}
 		};
 		addPage(fSecondPage);
 	}

@@ -9,18 +9,27 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.ui.preferences;
 
+import org.eclipse.dltk.core.IDLTKLanguageToolkit;
+import org.eclipse.dltk.python.core.PythonLanguageToolkit;
 import org.eclipse.dltk.ui.preferences.BuildPathsPropertyPage;
 import org.eclipse.dltk.ui.util.BusyIndicatorRunnableContext;
 import org.eclipse.dltk.ui.wizards.BuildpathsBlock;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.preferences.IWorkbenchPreferenceContainer;
 
-public class PythonBuildPathPropertyPage extends BuildPathsPropertyPage implements IWorkbenchPropertyPage {
+public class PythonBuildPathPropertyPage extends BuildPathsPropertyPage
+		implements IWorkbenchPropertyPage {
 	public PythonBuildPathPropertyPage() {
 	}
 
-	protected BuildpathsBlock createBuildPathBlock(IWorkbenchPreferenceContainer pageContainer) {
-		return new PythonBuildPathsBlock(new BusyIndicatorRunnableContext(), 
+	@Override
+	protected BuildpathsBlock createBuildPathBlock(
+			IWorkbenchPreferenceContainer pageContainer) {
+		return new PythonBuildPathsBlock(new BusyIndicatorRunnableContext(),
 				this, getSettings().getInt(INDEX), false, pageContainer);
+	}
+
+	public IDLTKLanguageToolkit getLanguageToolkit() {
+		return PythonLanguageToolkit.getDefault();
 	}
 }
