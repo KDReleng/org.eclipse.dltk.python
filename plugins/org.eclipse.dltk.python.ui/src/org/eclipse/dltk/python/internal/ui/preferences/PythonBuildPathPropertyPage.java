@@ -22,7 +22,6 @@ public class PythonBuildPathPropertyPage extends BuildPathsPropertyPage
 	public PythonBuildPathPropertyPage() {
 	}
 
-	@Override
 	protected BuildpathsBlock createBuildPathBlock(
 			IWorkbenchPreferenceContainer pageContainer) {
 		return new PythonBuildPathsBlock(new BusyIndicatorRunnableContext(),

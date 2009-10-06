@@ -34,12 +34,10 @@ public class PythonProjectCreationWizard extends ProjectWizard {
 		super.addPages();
 		fFirstPage = new ProjectWizardFirstPage() {
 
-			@Override
 			public String getScriptNature() {
 				return PythonNature.NATURE_ID;
 			}
 
-			@Override
 			protected boolean interpeterRequired() {
 				// TODO Auto-generated method stub
 				return false;
