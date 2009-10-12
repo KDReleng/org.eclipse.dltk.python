@@ -19,10 +19,6 @@ public class PythonInterpreterComboBlock extends AbstractInterpreterComboBlock {
 		super(tab);
 	}
 
-	protected void showInterpreterPreferencePage() {
-		showPrefPage(PythonInterpreterPreferencePage.PAGE_ID);
-	}
-
 	protected String getCurrentLanguageNature() {
 		return PythonNature.NATURE_ID;
 	}
