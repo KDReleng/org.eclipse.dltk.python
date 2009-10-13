@@ -9,14 +9,14 @@
  *******************************************************************************/
 package org.eclipse.dltk.python.internal.debug.ui.interpreters;
 
-
-import org.eclipse.dltk.internal.debug.ui.interpreters.AbstractInterpreterComboBlock;
 import org.eclipse.dltk.internal.debug.ui.interpreters.AbstractInterpreterContainerWizardPage;
+import org.eclipse.dltk.python.core.PythonNature;
 
+public class PythonInterpreterContainerWizardPage extends
+		AbstractInterpreterContainerWizardPage {
 
-public class PythonInterpreterContainerWizardPage extends AbstractInterpreterContainerWizardPage {
-
-	protected AbstractInterpreterComboBlock getInterpreterBlock() {
-		return new PythonInterpreterComboBlock(null);
+	@Override
+	public String getScriptNature() {
+		return PythonNature.NATURE_ID;
 	}
 }

@@ -27,6 +27,7 @@ public class PythonMainLaunchConfigurationTab extends
 	/*
 	 * @see org.eclipse.dltk.debug.ui.launchConfigurations.ScriptLaunchConfigurationTab#breakOnFirstLinePrefEnabled(org.eclipse.dltk.core.PreferencesLookupDelegate)
 	 */
+	@Override
 	protected boolean breakOnFirstLinePrefEnabled(
 			PreferencesLookupDelegate delegate) {
 		return delegate.getBoolean(PythonDebugPlugin.PLUGIN_ID,
@@ -36,15 +37,17 @@ public class PythonMainLaunchConfigurationTab extends
 	/*
 	 * @see org.eclipse.dltk.debug.ui.launchConfigurations.ScriptLaunchConfigurationTab#dbpgLoggingPrefEnabled(org.eclipse.dltk.core.PreferencesLookupDelegate)
 	 */
+	@Override
 	protected boolean dbpgLoggingPrefEnabled(PreferencesLookupDelegate delegate) {
 		return delegate.getBoolean(PythonDebugPlugin.PLUGIN_ID,
 				DLTKDebugPreferenceConstants.PREF_DBGP_ENABLE_LOGGING);
 	}
 
-	/*
-	 * @see org.eclipse.dltk.debug.ui.launchConfigurations.ScriptLaunchConfigurationTab#getNatureID()
+	/**
+	 * @since 2.0
 	 */
-	protected String getNatureID() {
+	@Override
+	public String getNatureID() {
 		return PythonNature.NATURE_ID;
 	}
 }

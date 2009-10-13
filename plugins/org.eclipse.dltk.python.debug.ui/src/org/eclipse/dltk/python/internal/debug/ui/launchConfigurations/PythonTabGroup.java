@@ -14,21 +14,17 @@ import org.eclipse.debug.ui.CommonTab;
 import org.eclipse.debug.ui.EnvironmentTab;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
+import org.eclipse.dltk.debug.ui.launchConfigurations.InterpreterTab;
 import org.eclipse.dltk.debug.ui.launchConfigurations.ScriptArgumentsTab;
-import org.eclipse.dltk.python.internal.debug.ui.interpreters.PythonInterpreterTab;
-
 
 public class PythonTabGroup extends AbstractLaunchConfigurationTabGroup {
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
-		
-		PythonMainLaunchConfigurationTab main = new PythonMainLaunchConfigurationTab(mode);
-		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
-				main,
-				new ScriptArgumentsTab(),
-				new PythonInterpreterTab(main),
-				new EnvironmentTab(),
-				new CommonTab()
-		};
+
+		PythonMainLaunchConfigurationTab main = new PythonMainLaunchConfigurationTab(
+				mode);
+		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] { main,
+				new ScriptArgumentsTab(), new InterpreterTab(main),
+				new EnvironmentTab(), new CommonTab() };
 		setTabs(tabs);
 	}
 }
