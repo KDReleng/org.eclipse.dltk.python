@@ -30,14 +30,15 @@ public class PythonProjectCreationWizard extends ProjectWizard {
 		setWindowTitle(PythonWizardMessages.ProjectCreationWizard_title);
 	}
 
+	@Override
+	public String getScriptNature() {
+		return PythonNature.NATURE_ID;
+	}
+
+	@Override
 	public void addPages() {
 		super.addPages();
 		fFirstPage = new ProjectWizardFirstPage() {
-
-			@Override
-			public String getScriptNature() {
-				return PythonNature.NATURE_ID;
-			}
 
 			@Override
 			protected boolean interpeterRequired() {
