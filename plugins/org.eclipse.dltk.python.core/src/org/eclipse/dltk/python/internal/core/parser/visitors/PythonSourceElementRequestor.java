@@ -309,14 +309,13 @@ public class PythonSourceElementRequestor extends SourceElementRequestVisitor {
 									.sourceStart(), e.sourceEnd());
 				} else if (e instanceof VariableReference) {
 					this.fRequestor.acceptFieldReference(
-							((VariableReference) e).getName().toCharArray(), e
-									.sourceStart());
+							((VariableReference) e).getName(), e.sourceStart());
 				}
 			}
 		} else if (expression instanceof VariableReference) {
 			this.fRequestor.acceptFieldReference(
-					((VariableReference) expression).getName().toCharArray(),
-					expression.sourceStart());
+					((VariableReference) expression).getName(), expression
+							.sourceStart());
 		}
 		return true;
 	}
