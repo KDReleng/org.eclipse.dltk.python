@@ -14,7 +14,7 @@ import junit.framework.TestSuite;
 
 public class AllTests {
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for org.eclipse.dltk.python.tests.model");
+		TestSuite suite = new TestSuite("org.eclipse.dltk.python.tests.model");
 		//$JUnit-BEGIN$
 		suite.addTest(org.eclipse.dltk.python.tests.eval.generated.AllTests.suite());
 		suite.addTest(org.eclipse.dltk.python.tests.buildpath.BuildpathTests.suite());
