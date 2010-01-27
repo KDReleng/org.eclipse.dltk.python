@@ -75,7 +75,7 @@ public abstract class PythonAssistParser implements IAssistParser {
 	}
 
 	public ModuleDeclaration parse(ISourceModule sourceUnit) {
-		ModuleDeclaration module = this.parser.parse(sourceUnit.getFileName(),
+		ModuleDeclaration module = this.parser.parse(sourceUnit.getFileName().toCharArray(),
 				sourceUnit.getContentsAsCharArray(), null);
 		module.rebuild();
 
