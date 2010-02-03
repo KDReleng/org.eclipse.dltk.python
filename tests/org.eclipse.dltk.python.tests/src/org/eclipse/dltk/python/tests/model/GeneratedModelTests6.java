@@ -35,7 +35,7 @@ public class GeneratedModelTests6 extends AbstractModelTests
 	}
 	public void tearDownSuite() throws Exception {
 		super.tearDownSuite();
-		deleteProject( "pytests6" );
+		deleteProject( "pytests_6" );
 	}
 	public void testModelGen300( ) throws Exception {
 		String prj = "pytests_6";
