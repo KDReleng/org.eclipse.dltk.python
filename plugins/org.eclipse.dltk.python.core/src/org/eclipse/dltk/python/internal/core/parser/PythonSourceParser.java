@@ -14,10 +14,9 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
 import org.eclipse.dltk.ast.parser.AbstractSourceParser;
+import org.eclipse.dltk.ast.parser.IModuleDeclaration;
+import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.compiler.problem.IProblemReporter;
 import org.eclipse.dltk.core.DLTKCore;
 import org.eclipse.dltk.python.internal.core.parsers.DLTKPythonErrorReporter;
@@ -32,7 +31,7 @@ public class PythonSourceParser extends AbstractSourceParser {
 	private IProblemReporter problemReporter = null;
 
 	public PythonSourceParser(/* IProblemReporter reporter */) {
-// this.problemReporter = reporter;
+		// this.problemReporter = reporter;
 	}
 
 	public static class MyLexer extends python_v3Lexer {
@@ -50,13 +49,15 @@ public class PythonSourceParser extends AbstractSourceParser {
 	 * Parses selected context to module declaration using python parser.
 	 * 
 	 */
-	public ModuleDeclaration parse(char[] fileName, char[] content0, IProblemReporter reporter) {// throws
+	public IModuleDeclaration parse(IModuleSource input,
+			IProblemReporter reporter) {// throws
 		this.problemReporter = reporter;
-		
+		char[] content0 = input.getContentsAsCharArray();
+
 		PythonModuleDeclaration moduleDeclaration = new PythonModuleDeclaration(
 				content0.length, true);
 
-		CharStream st = new ANTLRStringStream(new String(content0));
+		CharStream st = new ANTLRStringStream(content0, content0.length);
 		python_v3Lexer pythonLexer = new MyLexer(st);
 
 		CommonTokenStream tokens = new CommonTokenStream(pythonLexer);
@@ -69,7 +70,8 @@ public class PythonSourceParser extends AbstractSourceParser {
 		pythonParser.decl = moduleDeclaration;
 		pythonParser.length = content0.length;
 		pythonParser.converter = new DLTKTokenConverter(content0);
-		pythonParser.reporter = new DLTKPythonErrorReporter(pythonParser.converter, problemReporter, pythonParser);
+		pythonParser.reporter = new DLTKPythonErrorReporter(
+				pythonParser.converter, problemReporter, pythonParser);
 
 		try {
 			pythonParser.file_input();

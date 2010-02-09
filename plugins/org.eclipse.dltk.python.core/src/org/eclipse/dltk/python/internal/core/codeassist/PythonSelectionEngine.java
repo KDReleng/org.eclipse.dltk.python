@@ -16,7 +16,7 @@ import org.eclipse.dltk.ast.ASTNode;
 import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
 import org.eclipse.dltk.codeassist.IAssistParser;
 import org.eclipse.dltk.codeassist.ScriptSelectionEngine;
-import org.eclipse.dltk.compiler.env.ISourceModule;
+import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.core.DLTKCore;
 import org.eclipse.dltk.core.IDLTKLanguageToolkit;
 import org.eclipse.dltk.core.IModelElement;
@@ -42,7 +42,7 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 //		this.lookupEnvironment = new LookupEnvironment(this, nameEnvironment);
 	}
 
-	public IModelElement[] select(ISourceModule sourceUnit,
+	public IModelElement[] select(IModuleSource sourceUnit,
 			int selectionSourceStart, int selectionSourceEnd) {
 
 		String source = sourceUnit.getSourceContents();

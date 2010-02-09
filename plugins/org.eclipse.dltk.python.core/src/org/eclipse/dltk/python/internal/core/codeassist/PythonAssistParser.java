@@ -17,7 +17,7 @@ import org.eclipse.dltk.ast.ASTNode;
 import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
 import org.eclipse.dltk.ast.parser.ISourceParser;
 import org.eclipse.dltk.codeassist.IAssistParser;
-import org.eclipse.dltk.compiler.env.ISourceModule;
+import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.core.DLTKLanguageManager;
 import org.eclipse.dltk.python.core.PythonNature;
 
@@ -74,9 +74,8 @@ public abstract class PythonAssistParser implements IAssistParser {
 		this.module = unit;
 	}
 
-	public ModuleDeclaration parse(ISourceModule sourceUnit) {
-		ModuleDeclaration module = this.parser.parse(sourceUnit.getFileName().toCharArray(),
-				sourceUnit.getContentsAsCharArray(), null);
+	public ModuleDeclaration parse(IModuleSource sourceUnit) {
+		ModuleDeclaration module = (ModuleDeclaration) this.parser.parse(sourceUnit, null);
 		module.rebuild();
 
 		PythonASTUtil.extendStatements(module, sourceUnit.getSourceContents());
