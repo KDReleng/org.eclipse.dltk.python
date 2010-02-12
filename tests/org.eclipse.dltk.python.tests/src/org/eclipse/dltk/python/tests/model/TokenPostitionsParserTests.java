@@ -9,9 +9,12 @@ import org.eclipse.dltk.ast.ASTListNode;
 import org.eclipse.dltk.ast.ASTNode;
 import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
 import org.eclipse.dltk.ast.expressions.NumericLiteral;
+import org.eclipse.dltk.ast.parser.ISourceParser;
 import org.eclipse.dltk.ast.references.VariableReference;
 import org.eclipse.dltk.ast.statements.Block;
+import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.compiler.env.ModuleSource;
+import org.eclipse.dltk.compiler.problem.IProblemReporter;
 import org.eclipse.dltk.core.tests.model.SuiteOfTestCases;
 import org.eclipse.dltk.python.internal.core.parser.PythonSourceParser;
 import org.eclipse.dltk.python.parser.ast.PythonClassDeclaration;
@@ -24,7 +27,6 @@ import org.eclipse.dltk.python.parser.ast.expressions.PythonListForExpression;
 import org.eclipse.dltk.python.parser.ast.expressions.PythonTestListExpression;
 import org.eclipse.dltk.python.parser.ast.expressions.PythonTupleExpression;
 
-@SuppressWarnings("restriction")
 public class TokenPostitionsParserTests extends SuiteOfTestCases {
 
 	private static final String whileScript = "a=1; while a>0 : a=a-1;";
@@ -47,10 +49,14 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 		super("Token positions parser test case");
 	}
 
+	private static ModuleDeclaration parse(IModuleSource input,
+			IProblemReporter reporter) {
+		ISourceParser pyParser = new PythonSourceParser();
+		return (ModuleDeclaration) pyParser.parse(input, reporter);
+	}
+
 	private static void testWhileStatements(String script) throws Exception {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(script), null);
+		ModuleDeclaration module = parse(new ModuleSource(script), null);
 		List children = ((ASTNode) module.getChilds().iterator().next())
 				.getChilds();
 		Iterator iter = children.iterator();
@@ -92,9 +98,7 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testTestListExpr() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(testExprScript), null);
+		ModuleDeclaration module = parse(new ModuleSource(testExprScript), null);
 		List children = ((ASTNode) module.getChilds().iterator().next())
 				.getChilds();
 		PrintExpression printExpr = (PrintExpression) children.get(0);
@@ -105,9 +109,8 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testDictExpression() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(testDictExprScript), null);
+		ModuleDeclaration module = parse(new ModuleSource(testDictExprScript),
+				null);
 		List children = module.getChilds();
 
 		PythonDictExpression expr = (PythonDictExpression) ((Block) children
@@ -116,9 +119,8 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testTupleExpression() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(testTupleExprScript), null);
+		ModuleDeclaration module = parse(new ModuleSource(testTupleExprScript),
+				null);
 		List children = module.getChilds();
 
 		PythonTupleExpression expr = (PythonTupleExpression) ((Block) children
@@ -127,9 +129,8 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testListExpression() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(testListExprScript), null);
+		ModuleDeclaration module = parse(new ModuleSource(testListExprScript),
+				null);
 		List children = module.getChilds();
 
 		PythonListExpression expr = (PythonListExpression) ((Block) children
@@ -138,8 +139,7 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testBackQuotesExpression() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
+		ModuleDeclaration module = parse(
 				new ModuleSource(testBackQuotesScript), null);
 		List children = module.getChilds();
 
@@ -149,9 +149,8 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testSuperClassDecl() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(testSuperClassDeclScript), null);
+		ModuleDeclaration module = parse(new ModuleSource(
+				testSuperClassDeclScript), null);
 		List children = module.getChilds();
 		ASTListNode supers = ((PythonClassDeclaration) ((Block) children.get(0))
 				.getChilds().get(0)).getSuperClasses();
@@ -159,9 +158,7 @@ public class TokenPostitionsParserTests extends SuiteOfTestCases {
 	}
 
 	public void testForList() {
-		PythonSourceParser parser = new PythonSourceParser();
-		ModuleDeclaration module = (ModuleDeclaration) parser.parse(
-				new ModuleSource(testForList), null);
+		ModuleDeclaration module = parse(new ModuleSource(testForList), null);
 		Block block = (Block) module.getChilds().get(0);
 		PythonListExpression list = (PythonListExpression) block.getChilds()
 				.get(0);
