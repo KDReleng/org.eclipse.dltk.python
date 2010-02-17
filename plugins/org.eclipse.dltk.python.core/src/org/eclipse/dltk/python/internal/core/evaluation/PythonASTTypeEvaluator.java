@@ -1009,7 +1009,7 @@ public class PythonASTTypeEvaluator {
 				IMethod method = (IMethod) element;
 				String[] args = null;
 				try {
-					args = method.getParameters();
+					args = method.getParameterNames();
 					List/*<Expression>*/ callHolderArgs = PythonTypeEvaluatorUtils
 							.parseCallHolder(callHolder);
 					if (args.length == callHolderArgs.size()) {
