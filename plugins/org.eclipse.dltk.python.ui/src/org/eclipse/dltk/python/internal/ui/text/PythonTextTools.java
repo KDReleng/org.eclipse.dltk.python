@@ -20,15 +20,12 @@ import org.eclipse.ui.texteditor.ITextEditor;
 
 public class PythonTextTools extends ScriptTextTools {
 
-	private IPartitionTokenScanner fPartitionScanner;
-
 	private final static String[] LEGAL_CONTENT_TYPES = new String[] {
 			IPythonPartitions.PYTHON_STRING, IPythonPartitions.PYTHON_COMMENT };
 
 	public PythonTextTools(boolean autoDisposeOnDisplayDispose) {
 		super(IPythonPartitions.PYTHON_PARTITIONING, LEGAL_CONTENT_TYPES,
 				autoDisposeOnDisplayDispose);
-		fPartitionScanner = new PythonPartitionScanner();
 	}
 
 	public ScriptSourceViewerConfiguration createSourceViewerConfiguraton(
@@ -39,7 +36,7 @@ public class PythonTextTools extends ScriptTextTools {
 	}
 
 	public IPartitionTokenScanner getPartitionScanner() {
-		return fPartitionScanner;
+		return new PythonPartitionScanner();
 	}
 
 	public SemanticHighlighting[] getSemanticHighlightings() {
