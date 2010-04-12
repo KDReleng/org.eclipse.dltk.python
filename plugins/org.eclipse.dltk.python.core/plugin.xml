@@ -57,11 +57,11 @@
 
   <extension
     point="org.eclipse.dltk.core.search">
-    <seachFactory
+    <searchFactory
       class="org.eclipse.dltk.python.internal.core.search.PythonSearchFactory"
       nature="org.eclipse.dltk.python.core.nature"
       priority="0">
-    </seachFactory>
+    </searchFactory>
   </extension>
 
   <extension
