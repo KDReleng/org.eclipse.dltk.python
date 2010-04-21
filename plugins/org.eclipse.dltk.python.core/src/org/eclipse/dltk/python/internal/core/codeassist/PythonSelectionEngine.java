@@ -14,11 +14,10 @@ import java.util.List;
 
 import org.eclipse.dltk.ast.ASTNode;
 import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
-import org.eclipse.dltk.codeassist.IAssistParser;
+import org.eclipse.dltk.codeassist.AssistParser;
 import org.eclipse.dltk.codeassist.ScriptSelectionEngine;
 import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.core.DLTKCore;
-import org.eclipse.dltk.core.IDLTKLanguageToolkit;
 import org.eclipse.dltk.core.IModelElement;
 import org.eclipse.dltk.internal.codeassist.select.SelectionNodeFound;
 import org.eclipse.dltk.python.internal.core.parser.PythonParseUtils;
@@ -30,16 +29,20 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 
 	private int actualSelectionEnd;
 
-	private PythonSelectionParser parser = new PythonSelectionParser();
+	private AssistParser parser = new AssistParser(new PythonSelectionParser());
 
 	private List selectionElements = new ArrayList();
 
-	private IDLTKLanguageToolkit toolkit;
+	// private IDLTKLanguageToolkit toolkit;
 
-	public PythonSelectionEngine(/*ISearchableEnvironment environment, Map options*/) {
-//		super(options);	
-//		this.nameEnvironment = environment;
-//		this.lookupEnvironment = new LookupEnvironment(this, nameEnvironment);
+	public PythonSelectionEngine(/*
+								 * ISearchableEnvironment environment, Map
+								 * options
+								 */) {
+		// super(options);
+		// this.nameEnvironment = environment;
+		// this.lookupEnvironment = new LookupEnvironment(this,
+		// nameEnvironment);
 	}
 
 	public IModelElement[] select(IModuleSource sourceUnit,
@@ -72,7 +75,7 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 				try {
 					this.lookupEnvironment.buildTypeScope(parsedUnit, null);
 					if ((this.unitScope = parsedUnit.scope) != null) {
-						parseBlockStatements(parsedUnit,
+						parser.parseBlockStatements(parsedUnit,
 								this.actualSelectionStart);
 						if (DEBUG) {
 							System.out.println("COMPLETION - AST :"); //$NON-NLS-1$
@@ -104,15 +107,14 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 				System.out.println("Exception caught by SelectionEngine:"); //$NON-NLS-1$
 				e.printStackTrace(System.out);
 			}
-		} 
-		
+		}
+
 		return (IModelElement[]) selectionElements
 				.toArray(new IModelElement[selectionElements.size()]);
 	}
 
 	private void select(ASTNode astNode, ASTNode astNodeParent) {
 	}
-
 
 	private boolean checkSelection(String source, int selectionSourceStart,
 			int selectionSourceEnd) {
@@ -125,7 +127,8 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 
 		int start = PythonParseUtils.startLineOrNoSymbol(selectionSourceStart,
 				source);
-		int end = PythonParseUtils.endLineOrNoSymbol(selectionSourceEnd, source);
+		int end = PythonParseUtils
+				.endLineOrNoSymbol(selectionSourceEnd, source);
 		if (end <= start) {
 			if (cheat)
 				return checkSelection(source, selectionSourceEnd - 1,
@@ -157,8 +160,8 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 			}
 		}
 		if (isVariable && end < source.length() && source.charAt(end) == '(') {// it
-																				// is
-																				// array
+			// is
+			// array
 			while (end < source.length() && source.charAt(end) != ')')
 				end++;
 			end++;
@@ -178,7 +181,4 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 		return true;
 	}
 
-	public IAssistParser getParser() {
-		return parser;
-	}
 }
