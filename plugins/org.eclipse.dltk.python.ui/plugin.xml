@@ -223,6 +223,13 @@
         type="__dftl_partition_content_type" />
     </scriptCompletionProposalComputer>
   </extension>
+  <extension
+        point="org.eclipse.dltk.ui.completion">
+        <proposalLabelProvider
+              class="org.eclipse.dltk.python.internal.ui.text.completion.PythonCompletionProposalLabelProvider"
+              nature="org.eclipse.dltk.python.core.nature">
+        </proposalLabelProvider>
+  </extension>
  
 <extension
          point="org.eclipse.dltk.ui.dltkElementFilters">
