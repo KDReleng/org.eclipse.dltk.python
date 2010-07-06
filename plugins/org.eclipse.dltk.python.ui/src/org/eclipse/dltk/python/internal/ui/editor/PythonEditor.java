@@ -10,30 +10,25 @@
 package org.eclipse.dltk.python.internal.ui.editor;
 
 import org.eclipse.dltk.core.IDLTKLanguageToolkit;
-import org.eclipse.dltk.internal.ui.actions.FoldingActionGroup;
 import org.eclipse.dltk.internal.ui.editor.ScriptEditor;
 import org.eclipse.dltk.internal.ui.editor.ScriptOutlinePage;
 import org.eclipse.dltk.python.core.PythonLanguageToolkit;
 import org.eclipse.dltk.python.internal.ui.PythonUI;
 import org.eclipse.dltk.python.internal.ui.text.folding.PythonFoldingStructureProvider;
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
-import org.eclipse.dltk.ui.actions.GenerateActionGroup;
 import org.eclipse.dltk.ui.text.ScriptTextTools;
 import org.eclipse.dltk.ui.text.folding.IFoldingStructureProvider;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.actions.ActionGroup;
-import org.eclipse.ui.texteditor.ITextEditorActionConstants;
-
 
 public class PythonEditor extends ScriptEditor {
 
 	public static final String EDITOR_ID = "org.eclipse.dltk.python.ui.editor.PythonEditor";
 
 	public static final String EDITOR_CONTEXT = "#PythonEditorContext";
-	
+
 	public static final String RULER_CONTEXT = "#PythonRulerContext";
 
 	protected void initializeEditor() {
@@ -41,7 +36,7 @@ public class PythonEditor extends ScriptEditor {
 		setEditorContextMenuId(EDITOR_CONTEXT);
 		setRulerContextMenuId(RULER_CONTEXT);
 	}
-	
+
 	protected IPreferenceStore getScriptPreferenceStore() {
 		return PythonUI.getDefault().getPreferenceStore();
 	}
@@ -51,8 +46,8 @@ public class PythonEditor extends ScriptEditor {
 	}
 
 	protected ScriptOutlinePage doCreateOutlinePage() {
-		return new PythonOutlinePage(this, PythonUI
-				.getDefault().getPreferenceStore());
+		return new PythonOutlinePage(this, PythonUI.getDefault()
+				.getPreferenceStore());
 	}
 
 	protected void connectPartitioningToElement(IEditorInput input,
@@ -75,24 +70,12 @@ public class PythonEditor extends ScriptEditor {
 		}
 		return fFoldingProvider;
 	}
-	
-	protected void createActions() {
-		super.createActions();
-		ActionGroup generateActions = new GenerateActionGroup(this, ITextEditorActionConstants.GROUP_EDIT);
-		fActionGroups.addGroup(generateActions);
-		fContextMenuGroup.addGroup(generateActions);
-	}
-	
-	protected FoldingActionGroup createFoldingActionGroup() {
-		return new FoldingActionGroup(this, getViewer(), PythonUI.getDefault()
-				.getPreferenceStore());
-	}
 
 	public String getEditorId() {
 		return EDITOR_ID;
 	}
 
-	public IDLTKLanguageToolkit getLanguageToolkit() {		
+	public IDLTKLanguageToolkit getLanguageToolkit() {
 		return PythonLanguageToolkit.getDefault();
 	}
 
@@ -101,6 +84,6 @@ public class PythonEditor extends ScriptEditor {
 	}
 
 	protected void initializeKeyBindingScopes() {
-		setKeyBindingScopes(new String[] { "org.eclipse.dltk.ui.pythonEditorScope" });  //$NON-NLS-1$
+		setKeyBindingScopes(new String[] { "org.eclipse.dltk.ui.pythonEditorScope" }); //$NON-NLS-1$
 	}
 }
