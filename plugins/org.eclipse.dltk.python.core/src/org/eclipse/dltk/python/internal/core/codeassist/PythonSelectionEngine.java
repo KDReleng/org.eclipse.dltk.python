@@ -18,6 +18,7 @@ import org.eclipse.dltk.codeassist.AssistParser;
 import org.eclipse.dltk.codeassist.ScriptSelectionEngine;
 import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.core.DLTKCore;
+import org.eclipse.dltk.core.IModelElement;
 import org.eclipse.dltk.internal.codeassist.select.SelectionNodeFound;
 import org.eclipse.dltk.python.internal.core.parser.PythonParseUtils;
 
@@ -44,8 +45,8 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 		// nameEnvironment);
 	}
 
-	public void select(IModuleSource sourceUnit, int selectionSourceStart,
-			int selectionSourceEnd) {
+	public IModelElement[] select(IModuleSource sourceUnit,
+			int selectionSourceStart, int selectionSourceEnd) {
 
 		String source = sourceUnit.getSourceContents();
 		if (DEBUG) {
@@ -59,7 +60,7 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 			System.out.println(source);
 		}
 		if (!checkSelection(source, selectionSourceStart, selectionSourceEnd)) {
-			return;
+			return new IModelElement[0];
 		}
 		if (DEBUG) {
 			System.out.print("SELECTION - Checked : \""); //$NON-NLS-1$
@@ -107,7 +108,9 @@ public class PythonSelectionEngine extends ScriptSelectionEngine {
 				e.printStackTrace(System.out);
 			}
 		}
-		reportModelElements(selectionElements);
+
+		return (IModelElement[]) selectionElements
+				.toArray(new IModelElement[selectionElements.size()]);
 	}
 
 	private void select(ASTNode astNode, ASTNode astNodeParent) {
