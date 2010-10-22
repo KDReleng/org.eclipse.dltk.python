@@ -22,8 +22,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
-import org.eclipse.jface.text.information.IInformationProvider;
-import org.eclipse.jface.text.information.InformationPresenter;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
@@ -160,14 +158,6 @@ public class PythonSourceViewerConfiguration extends
 		String partitioning = getConfiguredDocumentPartitioning(sourceViewer);
 		return new IAutoEditStrategy[] { new PythonAutoEditStrategy(
 				fPreferenceStore, partitioning) };
-	}
-
-	protected void initializeQuickOutlineContexts(
-			InformationPresenter presenter, IInformationProvider provider) {
-		presenter.setInformationProvider(provider,
-				IPythonPartitions.PYTHON_COMMENT);
-		presenter.setInformationProvider(provider,
-				IPythonPartitions.PYTHON_STRING);
 	}
 
 	protected ContentAssistPreference getContentAssistPreference() {
