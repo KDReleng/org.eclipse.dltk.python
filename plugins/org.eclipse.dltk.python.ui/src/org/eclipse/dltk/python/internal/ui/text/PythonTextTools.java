@@ -10,8 +10,6 @@
 package org.eclipse.dltk.python.internal.ui.text;
 
 import org.eclipse.dltk.python.ui.text.IPythonPartitions;
-import org.eclipse.dltk.ui.editor.highlighting.ISemanticHighlighter;
-import org.eclipse.dltk.ui.editor.highlighting.SemanticHighlighting;
 import org.eclipse.dltk.ui.text.ScriptSourceViewerConfiguration;
 import org.eclipse.dltk.ui.text.ScriptTextTools;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -39,11 +37,4 @@ public class PythonTextTools extends ScriptTextTools {
 		return new PythonPartitionScanner();
 	}
 
-	public SemanticHighlighting[] getSemanticHighlightings() {
-		return new SemanticHighlighting[0];
-	}
-
-	public ISemanticHighlighter getSemanticPositionUpdater() {
-		return null;
-	}
 }
