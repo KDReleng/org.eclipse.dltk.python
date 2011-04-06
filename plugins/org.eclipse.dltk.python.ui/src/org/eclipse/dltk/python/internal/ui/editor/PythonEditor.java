@@ -37,7 +37,7 @@ public class PythonEditor extends ScriptEditor {
 		setRulerContextMenuId(RULER_CONTEXT);
 	}
 
-	protected IPreferenceStore getScriptPreferenceStore() {
+	public IPreferenceStore getScriptPreferenceStore() {
 		return PythonUI.getDefault().getPreferenceStore();
 	}
 
