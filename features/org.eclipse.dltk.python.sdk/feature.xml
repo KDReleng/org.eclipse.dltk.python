@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.dltk.python.sdk"
       label="%featureName"
-      version="2.0.0.qualifier"
+      version="4.0.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
@@ -14,12 +14,46 @@
       %license
    </license>
 
-   <includes
-         id="org.eclipse.dltk.python"
-         version="0.0.0"/>
+  <plugin
+         id="org.eclipse.dltk.python.ui.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <includes
-         id="org.eclipse.dltk.python.source"
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.dltk.python.core.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.dltk.python.debug.ui.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.dltk.python.debug.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.dltk.python.launching.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.dltk.python.activestatedebugger.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
