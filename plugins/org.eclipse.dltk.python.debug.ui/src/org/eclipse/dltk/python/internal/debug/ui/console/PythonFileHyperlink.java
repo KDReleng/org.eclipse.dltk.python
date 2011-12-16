@@ -19,7 +19,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.debug.ui.IDebugModelPresentation;
 import org.eclipse.dltk.debug.ui.DLTKDebugUIPlugin;
 import org.eclipse.dltk.internal.ui.editor.EditorUtility;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -27,13 +26,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.console.IHyperlink;
 import org.eclipse.ui.console.TextConsole;
-import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
 
@@ -116,31 +112,6 @@ public class PythonFileHyperlink implements IHyperlink {
 		}
 	}
 	
-	/**
-	 * @see IDebugModelPresentation#getEditorId(IEditorInput, Object)
-	 */
-	public String getEditorId(IEditorInput input, Object inputObject) {
-		try {
-			IEditorDescriptor descriptor= IDE.getEditorDescriptor(input.getName());
-			return descriptor.getId();
-		} catch (PartInitException e) {
-			return null;
-		}
-	}
-	
-	/**
-	 * @see IDebugModelPresentation#getEditorInput(Object)
-	 */
-	public IEditorInput getEditorInput(Object item) {
-		try {			
-			return EditorUtility.getEditorInput(item);
-		} catch (CoreException e) {
-			DLTKDebugUIPlugin.log(e);
-			return null;
-		}
-	}
-	
-
 	protected Object getSourceModule(String fileName) throws CoreException {				
 		IFile f = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(fileName));
 		return f;
