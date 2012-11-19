@@ -13,13 +13,13 @@ public class ExecStatement extends SimpleStatement {
 	
 	public void acceptIn(Expression e ) {
 		fIn = e;
-		if( e != null || e.sourceEnd() > this.sourceEnd() ) {
+		if( e != null && e.sourceEnd() > this.sourceEnd() ) {
 			this.setEnd(e.sourceEnd());
 		}
 	}
 	public void acceptIn2(Expression e ) {
 		fIn2 = e;
-		if( e != null || e.sourceEnd() > this.sourceEnd() ) {
+		if( e != null && e.sourceEnd() > this.sourceEnd() ) {
 			this.setEnd(e.sourceEnd());
 		}
 	}
